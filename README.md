@@ -2,7 +2,7 @@
 
 Mobile engineer portfolio. Single page, two languages, statically generated.
 
-**Live:** _(pending deploy)_
+**Live:** https://portfolio-xi-six-fj8lxwq2ku.vercel.app
 
 ## Stack
 
