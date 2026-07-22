@@ -150,7 +150,7 @@ const en: Dictionary = {
             highlights: [
                 {
                     title: "Tournament engine driven by data, not branches",
-                    body: "Group stages, round-robin and knockout brackets, with standings and tiebreak ordering defined per sport as data. Those rules can be overridden through Firebase Remote Config, so a scoring rule changes without shipping a build.",
+                    body: "Group stages, round-robin and knockout brackets, with standings and tiebreak ordering defined per sport as data. Those rules can be overridden through Firebase Remote Config, so a scoring rule changes without shipping a build. I later pulled the core out into a standalone, dependency-free TypeScript library, covered by 100 tests.",
                 },
                 {
                     title: "A match state machine that has to survive edge cases",
@@ -166,7 +166,10 @@ const en: Dictionary = {
                 },
             ],
             stack: ["Expo", "React Native", "TypeScript", "Firebase Remote Config", "RevenueCat", "expo-print"],
-            links: [{ label: "App Store", href: "https://apps.apple.com/ie/app/scoreboard-tournament-track/id6756669003" }],
+            links: [
+                { label: "App Store", href: "https://apps.apple.com/ie/app/scoreboard-tournament-track/id6756669003" },
+                { label: "Engine source", href: "https://github.com/AndreOleari015/tournament-engine" },
+            ],
         },
         {
             slug: "lista-virtual",
@@ -386,7 +389,7 @@ const pt: Dictionary = {
             highlights: [
                 {
                     title: "Motor de torneio orientado a dados, não a condicionais",
-                    body: "Fase de grupos, pontos corridos e mata-mata, com classificação e critérios de desempate definidos por esporte como dado. Essas regras podem ser sobrescritas via Firebase Remote Config, então mudar uma regra de pontuação não exige publicar uma versão nova.",
+                    body: "Fase de grupos, pontos corridos e mata-mata, com classificação e critérios de desempate definidos por esporte como dado. Essas regras podem ser sobrescritas via Firebase Remote Config, então mudar uma regra de pontuação não exige publicar uma versão nova. Depois extraí o núcleo para uma biblioteca TypeScript independente, sem dependências e coberta por 100 testes.",
                 },
                 {
                     title: "Uma máquina de estados que precisa aguentar os casos raros",
@@ -402,7 +405,10 @@ const pt: Dictionary = {
                 },
             ],
             stack: ["Expo", "React Native", "TypeScript", "Firebase Remote Config", "RevenueCat", "expo-print"],
-            links: [{ label: "App Store", href: "https://apps.apple.com/ie/app/scoreboard-tournament-track/id6756669003" }],
+            links: [
+                { label: "App Store", href: "https://apps.apple.com/ie/app/scoreboard-tournament-track/id6756669003" },
+                { label: "Código do motor", href: "https://github.com/AndreOleari015/tournament-engine" },
+            ],
         },
         {
             slug: "lista-virtual",
