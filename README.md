@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal site — Andre Oleari
 
-## Getting Started
+Mobile engineer portfolio. Single page, two languages, statically generated.
 
-First, run the development server:
+**Live:** _(pending deploy)_
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · TypeScript.
+
+No CMS, no database, no client-side data fetching. Both locales are prerendered at build
+time — the whole site is static HTML.
+
+## Layout
+
+```
+app/[locale]/layout.tsx   root layout — dynamic html lang, per-locale metadata and OG tags
+app/[locale]/page.tsx     the page
+app/globals.css           design tokens, animations, light/dark theme
+content/dictionary.ts     every string, EN and PT — single source of truth
+components/               section · hero · project-list · experience · about · contact ·
+                          site-header · site-nav · site-footer · motion · theme-toggle
+public/shots/             app screenshots
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Internationalisation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+There is no i18n library. `content/dictionary.ts` exports one typed object per locale and
+`generateStaticParams` emits `/en` and `/pt`. The shared TypeScript interface means a
+missing translation is a build error, not a runtime fallback. `/` redirects to `/en`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Theme
 
-## Learn More
+Light and dark, following the system preference, with a manual toggle that persists to
+`localStorage`. An inline boot script applies the stored theme before first paint so the
+page never flashes the wrong one.
 
-To learn more about Next.js, take a look at the following resources:
+## Running it
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuration
 
-## Deploy on Vercel
+`NEXT_PUBLIC_SITE_URL` — absolute origin used for canonical URLs and `og:image`. Set it
+once a custom domain is attached; without it the deployment URL is used.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Licence
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Code is free to read and learn from. The written content, screenshots and images are not
+licensed for reuse.
