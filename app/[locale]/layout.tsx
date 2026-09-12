@@ -26,6 +26,13 @@ const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL ??
     (vercelHost ? `https://${vercelHost}` : "http://localhost:3000");
 
+/**
+ * Token de verificação de propriedade do Google Search Console. É público por
+ * natureza — sai no HTML de toda página. Existe porque a Brand Verification do
+ * OAuth exige que o domínio declarado como autorizado seja comprovadamente seu.
+ */
+const GOOGLE_SITE_VERIFICATION = "myZkF34bGLh-jYlMoZCBPviYKX5QFhJlihZocTWJr1Q";
+
 export const generateStaticParams = () => locales.map((locale) => ({ locale }));
 
 export const generateMetadata = async ({
@@ -46,6 +53,7 @@ export const generateMetadata = async ({
 
     return {
         metadataBase: new URL(SITE_URL),
+        verification: { google: GOOGLE_SITE_VERIFICATION },
         title: dict.meta.title,
         description: dict.meta.description,
         authors: [{ name: profile.name, url: profile.github }],
