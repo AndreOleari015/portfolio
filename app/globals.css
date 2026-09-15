@@ -13,11 +13,11 @@
     --text: #14130f;
     --text-muted: #5c584f;
     --text-faint: #8a8477;
-    --accent: #0d7a52;
-    --accent-bright: #10a06b;
-    --accent-soft: #dcf0e6;
+    --accent: #0f5fc4;
+    --accent-bright: #2a7de1;
+    --accent-soft: #dce9f9;
     --accent-contrast: #ffffff;
-    --glow: 13 122 82;
+    --glow: 15 95 196;
     --shadow-sm: 0 1px 2px rgb(20 19 15 / 0.05), 0 1px 3px rgb(20 19 15 / 0.04);
     --shadow-md: 0 4px 12px -2px rgb(20 19 15 / 0.08), 0 12px 32px -12px rgb(20 19 15 / 0.14);
     --shadow-lg: 0 8px 24px -4px rgb(20 19 15 / 0.1), 0 24px 56px -16px rgb(20 19 15 / 0.18);
@@ -26,19 +26,19 @@
 
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-        --bg: #0a0b0a;
-        --bg-elevated: #121412;
-        --surface: #171a17;
-        --border: #232722;
-        --border-strong: #363c34;
-        --text: #edefeb;
-        --text-muted: #9ea59a;
-        --text-faint: #6b7268;
-        --accent: #4ade80;
-        --accent-bright: #6ee7a0;
-        --accent-soft: #142a1d;
-        --accent-contrast: #06120b;
-        --glow: 74 222 128;
+        --bg: #0a0b0d;
+        --bg-elevated: #121418;
+        --surface: #16191e;
+        --border: #22262d;
+        --border-strong: #353b45;
+        --text: #eceef2;
+        --text-muted: #9aa1ad;
+        --text-faint: #6a7280;
+        --accent: #5fa8ff;
+        --accent-bright: #8cc2ff;
+        --accent-soft: #11253f;
+        --accent-contrast: #05121f;
+        --glow: 95 168 255;
         --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
         --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.5), 0 12px 32px -12px rgb(0 0 0 / 0.7);
         --shadow-lg: 0 8px 24px -4px rgb(0 0 0 / 0.55), 0 24px 56px -16px rgb(0 0 0 / 0.8);
@@ -47,19 +47,19 @@
 }
 
 :root[data-theme="dark"] {
-    --bg: #0a0b0a;
-    --bg-elevated: #121412;
-    --surface: #171a17;
-    --border: #232722;
-    --border-strong: #363c34;
-    --text: #edefeb;
-    --text-muted: #9ea59a;
-    --text-faint: #6b7268;
-    --accent: #4ade80;
-    --accent-bright: #6ee7a0;
-    --accent-soft: #142a1d;
-    --accent-contrast: #06120b;
-    --glow: 74 222 128;
+    --bg: #0a0b0d;
+    --bg-elevated: #121418;
+    --surface: #16191e;
+    --border: #22262d;
+    --border-strong: #353b45;
+    --text: #eceef2;
+    --text-muted: #9aa1ad;
+    --text-faint: #6a7280;
+    --accent: #5fa8ff;
+    --accent-bright: #8cc2ff;
+    --accent-soft: #11253f;
+    --accent-contrast: #05121f;
+    --glow: 95 168 255;
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.5);
     --shadow-md: 0 4px 12px -2px rgb(0 0 0 / 0.5), 0 12px 32px -12px rgb(0 0 0 / 0.7);
     --shadow-lg: 0 8px 24px -4px rgb(0 0 0 / 0.55), 0 24px 56px -16px rgb(0 0 0 / 0.8);
@@ -221,6 +221,53 @@ body::after {
    =========================================================================== */
 .device-stack {
     perspective: 1600px;
+}
+
+/* ---------------------------------------------------------------------------
+   REVEZAMENTO DOS APPS NO HERO
+   Três camadas sobrepostas, cada uma visível por um terço do ciclo. A `perspective`
+   fica no .device-stack de dentro porque só vale para filho direto — se subisse para
+   o carrossel, os aparelhos perderiam o 3D.
+   --------------------------------------------------------------------------- */
+.app-slide {
+    opacity: 0;
+    animation: app-cycle 16.5s var(--ease-out-quint) infinite;
+    animation-delay: calc(var(--slide) * 5.5s);
+    will-change: opacity, transform;
+}
+
+@keyframes app-cycle {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 16px, 0) scale(0.97);
+    }
+    4%,
+    30% {
+        opacity: 1;
+        transform: none;
+    }
+    34%,
+    100% {
+        opacity: 0;
+        transform: translate3d(0, -16px, 0) scale(0.98);
+    }
+}
+
+.app-logo {
+    background: var(--bg-elevated);
+}
+
+/* Sem movimento: mostra só o primeiro app, parado. */
+@media (prefers-reduced-motion: reduce) {
+    .app-slide {
+        animation: none;
+    }
+    .app-slide:first-child {
+        opacity: 1;
+    }
+    .app-slide:not(:first-child) {
+        display: none;
+    }
 }
 
 .device {

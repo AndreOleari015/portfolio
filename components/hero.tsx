@@ -5,7 +5,14 @@ import { profile } from "@/content/dictionary";
 /** Atalho para escalonar a entrada sem repetir o objeto de estilo. */
 const rise = (delay: number) => ({ "--rise-delay": `${delay}ms` }) as React.CSSProperties;
 
-export const Hero = ({ dict }: { dict: Dictionary }) => (
+export const Hero = ({ dict }: { dict: Dictionary }) => {
+    /** Só os apps entram no revezamento: são os que têm logo e três telas. */
+    const heroApps = dict.projects.filter(
+        (p): p is typeof p & { logo: string; shots: NonNullable<typeof p.shots> } =>
+            Boolean(p.logo) && (p.shots?.length ?? 0) >= 3,
+    );
+
+    return (
     <section className="relative isolate overflow-hidden pt-20 pb-20 md:pt-28 md:pb-24">
         <div aria-hidden className="grid-bg" />
         <div aria-hidden className="aurora" />
@@ -70,42 +77,60 @@ export const Hero = ({ dict }: { dict: Dictionary }) => (
                     </div>
                 </div>
 
-                {/* Dois aparelhos flutuando — preenchem a coluna direita e dizem
-                    "mobile" antes de a pessoa ler qualquer palavra. */}
+                {/* Os três apps se revezando — dizem "mobile" antes de a pessoa ler
+                    qualquer palavra, e mostram que são três, não um. */}
                 <div
                     aria-hidden
                     style={rise(380)}
-                    className="rise device-stack relative hidden lg:block">
+                    className="rise app-carousel relative hidden h-[28rem] lg:block">
                     <div
                         className="absolute top-1/2 left-1/2 -z-10 size-80 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
                         style={{
                             background: "radial-gradient(circle, rgb(var(--glow) / 0.28), transparent 70%)",
                         }}
                     />
-                    <div className="relative flex justify-center gap-4">
-                        <div className="device device-back w-[9.5rem] overflow-hidden rounded-2xl border border-border">
-                            <Image
-                                src="/shots/bus-times-widgets.webp"
-                                alt=""
-                                width={720}
-                                height={1564}
-                                priority
-                                sizes="10rem"
-                                className="h-auto w-full"
-                            />
+
+                    {heroApps.map((app, i) => (
+                        <div
+                            key={app.slug}
+                            style={{ "--slide": i } as React.CSSProperties}
+                            className="app-slide absolute inset-0 flex items-center justify-center">
+                            <div className="device-stack relative flex justify-center gap-4">
+                                <div className="device device-back w-[9.5rem] overflow-hidden rounded-2xl border border-border">
+                                    <Image
+                                        src={app.shots[2].src}
+                                        alt=""
+                                        width={720}
+                                        height={1565}
+                                        priority={i === 0}
+                                        sizes="10rem"
+                                        className="h-auto w-full"
+                                    />
+                                </div>
+                                <div className="device device-front w-[9.5rem] overflow-hidden rounded-2xl border border-border">
+                                    <Image
+                                        src={app.shots[0].src}
+                                        alt=""
+                                        width={720}
+                                        height={1565}
+                                        priority={i === 0}
+                                        sizes="10rem"
+                                        className="h-auto w-full"
+                                    />
+                                </div>
+
+                                {/* A logo na frente, para o app ter nome mesmo sem legenda */}
+                                <Image
+                                    src={app.logo}
+                                    alt=""
+                                    width={256}
+                                    height={256}
+                                    sizes="4.5rem"
+                                    className="app-logo absolute -bottom-5 left-1/2 size-[4.5rem] -translate-x-1/2 rounded-[1.1rem] border border-border/60 shadow-float"
+                                />
+                            </div>
                         </div>
-                        <div className="device device-front w-[9.5rem] overflow-hidden rounded-2xl border border-border">
-                            <Image
-                                src="/shots/bus-times-nearby.webp"
-                                alt=""
-                                width={720}
-                                height={1564}
-                                priority
-                                sizes="10rem"
-                                className="h-auto w-full"
-                            />
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
 
@@ -125,4 +150,5 @@ export const Hero = ({ dict }: { dict: Dictionary }) => (
             </dl>
         </div>
     </section>
-);
+    );
+};

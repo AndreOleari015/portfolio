@@ -6,7 +6,7 @@ export const Experience = ({ dict }: { dict: Dictionary }) => (
             {/* Trilho da linha do tempo, esmaecendo no fim */}
             <span
                 aria-hidden
-                className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-border-strong via-border to-transparent"
+                className="absolute inset-y-0 left-1 w-px -translate-x-1/2 bg-gradient-to-b from-border-strong via-border to-transparent"
             />
 
             {dict.experience.jobs.map((job, i) => (

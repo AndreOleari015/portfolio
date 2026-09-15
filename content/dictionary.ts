@@ -23,10 +23,17 @@ export type Project = {
     tagline: string;
     year: string;
     summary: string;
-    shots: { src: string; alt: string }[];
+    /** Opcional — nem todo projeto é um app com telas de telefone. */
+    shots?: { src: string; alt: string }[];
+    /** "phone" (padrão) = retrato, três por linha. "wide" = captura larga. */
+    media?: "phone" | "wide";
     highlights: { title: string; body: string }[];
     stack: string[];
     links: { label: string; href: string }[];
+    /** Aparece onde ficam os links, quando não existe repositório público. */
+    note?: string;
+    /** Ícone do app. Só os apps têm — é o que o hero mostra na frente dos telefones. */
+    logo?: string;
 };
 
 export type Job = {
@@ -91,21 +98,22 @@ const en: Dictionary = {
     },
     work: {
         heading: "Selected work",
-        kicker: "Three apps I designed, built and published on my own developer account.",
-        note: "Each one solves a different technical problem — that is why these three.",
+        kicker: "Five things I designed and built end to end — three apps on my own developer account, and two tools that solve problems away from the phone.",
+        note: "Each one solves a different technical problem — that is why these five.",
     },
     projects: [
         {
             slug: "bus-times",
+            logo: "/logos/bus-times.577ac812.webp",
             name: "Bus Times: Dublin & Ireland",
             tagline: "Live public transport departures for Ireland",
             year: "2026",
             summary:
                 "An unofficial companion for Irish bus, tram and rail. It answers one question — do I run or do I have time? — and it has to be right, so it distinguishes clearly between real-time and scheduled departures.",
             shots: [
-                { src: "/shots/bus-times-nearby.webp", alt: "Nearby stops with live departure times" },
-                { src: "/shots/bus-times-map.webp", alt: "Map showing stops and live vehicle positions" },
-                { src: "/shots/bus-times-widgets.webp", alt: "Home Screen widgets showing the next departures" },
+                { src: "/shots/bus-times-nearby.6f3e67da.webp", alt: "Nearby stops with live departure times" },
+                { src: "/shots/bus-times-map.11709c8a.webp", alt: "Map showing stops and live vehicle positions" },
+                { src: "/shots/bus-times-widgets.9efb147e.webp", alt: "Home Screen widgets showing the next departures" },
             ],
             highlights: [
                 {
@@ -137,15 +145,16 @@ const en: Dictionary = {
         },
         {
             slug: "scoreboard",
+            logo: "/logos/scoreboard.8eac9fd5.webp",
             name: "Scoreboard – Tournament Track",
             tagline: "Scorekeeper, bracket maker and tournament manager",
             year: "2025—2026",
             summary:
                 "A digital scoreboard for amateur sport that grew into a tournament manager. Phone flat on the table in landscape, big readable numbers — and behind that, a full competition engine.",
             shots: [
-                { src: "/shots/scoreboard-scoring.webp", alt: "Landscape scoreboard during a match" },
-                { src: "/shots/scoreboard-tournament.webp", alt: "Tournament setup with sport, format and timing options" },
-                { src: "/shots/scoreboard-standings.webp", alt: "Automatically generated group standings" },
+                { src: "/shots/scoreboard-tournament.294f798e.webp", alt: "Tournament setup with sport, format and timing options" },
+                { src: "/shots/scoreboard-scoring.2a9b778b.webp", alt: "Scoring modes for each sport, from casual to full football" },
+                { src: "/shots/scoreboard-standings.96570033.webp", alt: "Automatically generated group standings" },
             ],
             highlights: [
                 {
@@ -168,20 +177,22 @@ const en: Dictionary = {
             stack: ["Expo", "React Native", "TypeScript", "Firebase Remote Config", "RevenueCat", "expo-print"],
             links: [
                 { label: "App Store", href: "https://apps.apple.com/ie/app/scoreboard-tournament-track/id6756669003" },
+                { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.scoreboardapp.app" },
                 { label: "Engine source", href: "https://github.com/AndreOleari015/tournament-engine" },
             ],
         },
         {
             slug: "lista-virtual",
+            logo: "/logos/lista-virtual.5eeeecb4.webp",
             name: "Lista Virtual — Guest List",
             tagline: "Guest list, RSVP and live check-in for events",
-            year: "2024—2026",
+            year: "2025—2026",
             summary:
                 "Event organisers still run the door off a printed spreadsheet. This replaces it: import the guest list, send RSVP invitations, and have receptionists check people in at the door — including when the venue has no signal.",
             shots: [
-                { src: "/shots/lista-virtual-guests.webp", alt: "Guest list with live attendance counters" },
-                { src: "/shots/lista-virtual-checkin.webp", alt: "Live check-in marking guests as present" },
-                { src: "/shots/lista-virtual-team.webp", alt: "Receptionist team management" },
+                { src: "/shots/lista-virtual-guests.09c204ac.webp", alt: "Guest list with live attendance counters" },
+                { src: "/shots/lista-virtual-team.e558b6c6.webp", alt: "Receptionist team management" },
+                { src: "/shots/lista-virtual-checkin.d8e69c27.webp", alt: "Live check-in marking guests as present" },
             ],
             highlights: [
                 {
@@ -206,6 +217,68 @@ const en: Dictionary = {
                 { label: "App Store", href: "https://apps.apple.com/ie/app/lista-virtual-guest-list/id6738919953" },
                 { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.ROC" },
             ],
+        },
+        {
+            slug: "job-tailor",
+            name: "Job Tailor",
+            tagline: "CV and cover letter tailored to a posting, without inventing a fact",
+            year: "2026",
+            summary:
+                "Applying for jobs is a volume game, and the obvious way to win it is to let a model write the letter. That is also how an employer ends up reading a bullet that never happened. This solves the volume problem under one constraint: the model may only select bullets I wrote by hand.",
+            highlights: [
+                {
+                    title: "The model answers with ids, not prose",
+                    body: "Everything checkable — employers, dates, technologies, numbers — lives in a profile file. The tailoring schema has no field through which invented prose could arrive, because the model replies with bullet ids. A reconciliation pass then drops any id that is not real, rebuilds the ordering, and recomputes every flag and the gap list from scratch rather than trusting the ones it was handed.",
+                },
+                {
+                    title: "Two retry budgets, because two different things go wrong",
+                    body: "A malformed answer and a well-formed but wrong answer are not the same failure. The first goes back to the model with its own output and the exact validation errors, on its own budget. The second gets a smaller, separate one — and when that runs out the value is accepted on purpose, so a flag surfaces it to a human instead of it disappearing into a retry loop.",
+                },
+                {
+                    title: "A PDF is one drag away from a real application",
+                    body: "Eighteen flag codes mark an application as unsafe to send: a technology claim the profile does not support, a cover letter naming the wrong company, a salary in the wrong currency. Rendering refuses outright on a blocking flag, and forcing it stamps the page DRAFT — UNVERIFIED CLAIMS.",
+                },
+                {
+                    title: "Reply latency is the diagnosis, not a metric",
+                    body: "A rejection inside an hour means an automatic filter read the CV and a person never did; days mean someone did. It reports the median, never the mean, so a single three-month reply cannot describe a funnel. An acknowledgement email is classified as its own kind and never as an outcome — recording it would manufacture a minutes-long latency and invert the reading of everything else.",
+                },
+            ],
+            stack: ["TypeScript", "Node.js", "Fastify", "SQLite", "Zod", "Gemini", "Claude", "Puppeteer"],
+            links: [{ label: "Source", href: "https://github.com/AndreOleari015/job-tailor" }],
+        },
+        {
+            slug: "product-radar",
+            name: "Product Radar",
+            tagline: "Which product is worth selling, and in which country",
+            year: "2026",
+            media: "wide",
+            shots: [
+                { src: "/shots/product-radar-ranking.4f70580f.webp", alt: "Ranked product and market opportunities, each showing its score beside its confidence" },
+                { src: "/shots/product-radar-matrix.75f33890.webp", alt: "Product by country heatmap showing where each product scores best" },
+            ],
+            summary:
+                "Product intelligence for physical goods. It pulls supplier catalogues, marketplace listings, keyword demand and exchange rates, then scores every product against seven European markets. The hard part is not the score — it is refusing to show a number the data cannot support.",
+            highlights: [
+                {
+                    title: "Two numbers that are never merged",
+                    body: "Every opportunity carries a score — how attractive it is, if the data is right — and a confidence, how far that data can be trusted. 92/35 and 86/94 are different products, and averaging them into one figure would hide exactly the distinction the tool exists to make. Missing data lowers confidence; it never quietly becomes a zero.",
+                },
+                {
+                    title: "Scoring that knows what it does not know",
+                    body: "A component with no data is removed from the weighted average and the remaining weights are renormalised, with the gap recorded. Below half the surviving weight the row is marked as insufficient data instead of being scored badly — a product is not unattractive just because nobody measured it.",
+                },
+                {
+                    title: "The architecture is a lint rule, not a convention",
+                    body: "The domain package does no I/O at all: importing the database, an adapter or any node module fails the build, and a probe test checks that the rule still bites. Every external system sits behind a port with a real and a mock implementation, so the whole pipeline runs end to end with no credentials.",
+                },
+                {
+                    title: "Postgres doing the work people reach for a queue to do",
+                    body: "Collection steps claim work with FOR UPDATE SKIP LOCKED, and stale claims are released — which protects the API quota rather than the data, because the steps are idempotent. Observations are append-only and keyed by when they were observed, so any past day's ranking can be rebuilt. Fuzzing the scoring with NaN caught a real bug: NaN fails every comparison, so the clamp let it through, and Postgres sorts it above every real number.",
+                },
+            ],
+            stack: ["TypeScript", "Next.js", "PostgreSQL", "Drizzle", "Zod", "Vitest", "PGlite"],
+            links: [],
+            note: "Source is private",
         },
     ],
     experience: {
@@ -285,8 +358,9 @@ const en: Dictionary = {
         heading: "Tools I reach for",
         groups: [
             { label: "Mobile", items: ["React Native", "Expo", "expo-router", "TypeScript", "SwiftUI", "WidgetKit"] },
-            { label: "Backend & data", items: ["Cloudflare Workers", "R2", "Firebase", "Firestore", "Cloud Functions", "Node.js", "REST"] },
-            { label: "Release & ops", items: ["EAS Build", "Fastlane", "GitHub Actions", "RevenueCat", "AdMob", "Remote Config"] },
+            { label: "Backend & data", items: ["Node.js", "Fastify", "PostgreSQL", "Drizzle", "SQLite", "Cloudflare Workers", "Firestore", "Zod"] },
+            { label: "AI & computer vision", items: ["Gemini", "Claude", "Structured output", "Python", "YOLOv8", "Pose estimation", "FastAPI", "NumPy"] },
+            { label: "Release & ops", items: ["EAS Build", "Fastlane", "GitHub Actions", "Vitest", "RevenueCat", "AdMob", "Remote Config"] },
         ],
     },
     contact: {
@@ -330,21 +404,22 @@ const pt: Dictionary = {
     },
     work: {
         heading: "Projetos selecionados",
-        kicker: "Três apps que projetei, construí e publiquei na minha própria conta de desenvolvedor.",
-        note: "Cada um resolve um problema técnico diferente — é por isso que são esses três.",
+        kicker: "Cinco coisas que projetei e construí do início ao fim — três apps na minha própria conta de desenvolvedor e duas ferramentas que resolvem problemas fora do telefone.",
+        note: "Cada uma resolve um problema técnico diferente — é por isso que são essas cinco.",
     },
     projects: [
         {
             slug: "bus-times",
+            logo: "/logos/bus-times.577ac812.webp",
             name: "Bus Times: Dublin & Ireland",
             tagline: "Horários de transporte público da Irlanda em tempo real",
             year: "2026",
             summary:
                 "Um companheiro não-oficial para ônibus, tram e trem na Irlanda. Ele responde a uma única pergunta — corro ou dá tempo? — e precisa acertar, então separa com clareza o que é tempo real do que é horário programado.",
             shots: [
-                { src: "/shots/bus-times-nearby.webp", alt: "Paradas próximas com horários de partida ao vivo" },
-                { src: "/shots/bus-times-map.webp", alt: "Mapa com paradas e veículos em tempo real" },
-                { src: "/shots/bus-times-widgets.webp", alt: "Widgets na tela de início com as próximas partidas" },
+                { src: "/shots/bus-times-nearby.6f3e67da.webp", alt: "Paradas próximas com horários de partida ao vivo" },
+                { src: "/shots/bus-times-map.11709c8a.webp", alt: "Mapa com paradas e veículos em tempo real" },
+                { src: "/shots/bus-times-widgets.9efb147e.webp", alt: "Widgets na tela de início com as próximas partidas" },
             ],
             highlights: [
                 {
@@ -376,15 +451,16 @@ const pt: Dictionary = {
         },
         {
             slug: "scoreboard",
+            logo: "/logos/scoreboard.8eac9fd5.webp",
             name: "Scoreboard – Tournament Track",
             tagline: "Placar, chaveamento e gestão de torneios",
             year: "2025—2026",
             summary:
                 "Um placar digital para esporte amador que virou gerenciador de torneios. Celular deitado na mesa em paisagem, números grandes e legíveis — e, por trás disso, um motor de competição completo.",
             shots: [
-                { src: "/shots/scoreboard-scoring.webp", alt: "Placar em modo paisagem durante uma partida" },
-                { src: "/shots/scoreboard-tournament.webp", alt: "Criação de torneio com esporte, formato e tempo" },
-                { src: "/shots/scoreboard-standings.webp", alt: "Tabela de classificação gerada automaticamente" },
+                { src: "/shots/scoreboard-tournament.294f798e.webp", alt: "Criação de torneio com esporte, formato e tempo" },
+                { src: "/shots/scoreboard-scoring.2a9b778b.webp", alt: "Modos de pontuação para cada esporte, do casual ao futebol completo" },
+                { src: "/shots/scoreboard-standings.96570033.webp", alt: "Tabela de classificação gerada automaticamente" },
             ],
             highlights: [
                 {
@@ -407,20 +483,22 @@ const pt: Dictionary = {
             stack: ["Expo", "React Native", "TypeScript", "Firebase Remote Config", "RevenueCat", "expo-print"],
             links: [
                 { label: "App Store", href: "https://apps.apple.com/ie/app/scoreboard-tournament-track/id6756669003" },
+                { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.scoreboardapp.app" },
                 { label: "Código do motor", href: "https://github.com/AndreOleari015/tournament-engine" },
             ],
         },
         {
             slug: "lista-virtual",
+            logo: "/logos/lista-virtual.5eeeecb4.webp",
             name: "Lista Virtual — Guest List",
             tagline: "Lista de convidados, RSVP e check-in ao vivo para eventos",
-            year: "2024—2026",
+            year: "2025—2026",
             summary:
                 "Organizador de evento ainda controla a portaria com planilha impressa. Este app substitui isso: importa a lista, dispara convites com RSVP e deixa recepcionistas fazerem check-in na porta — inclusive quando o salão não tem sinal.",
             shots: [
-                { src: "/shots/lista-virtual-guests.webp", alt: "Lista de convidados com contadores de presença" },
-                { src: "/shots/lista-virtual-checkin.webp", alt: "Check-in ao vivo marcando convidados presentes" },
-                { src: "/shots/lista-virtual-team.webp", alt: "Gestão da equipe de recepcionistas" },
+                { src: "/shots/lista-virtual-guests.09c204ac.webp", alt: "Lista de convidados com contadores de presença" },
+                { src: "/shots/lista-virtual-team.e558b6c6.webp", alt: "Gestão da equipe de recepcionistas" },
+                { src: "/shots/lista-virtual-checkin.d8e69c27.webp", alt: "Check-in ao vivo marcando convidados presentes" },
             ],
             highlights: [
                 {
@@ -445,6 +523,68 @@ const pt: Dictionary = {
                 { label: "App Store", href: "https://apps.apple.com/ie/app/lista-virtual-guest-list/id6738919953" },
                 { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.ROC" },
             ],
+        },
+        {
+            slug: "job-tailor",
+            name: "Job Tailor",
+            tagline: "CV e carta de apresentação sob medida para a vaga, sem inventar um fato",
+            year: "2026",
+            summary:
+                "Candidatar-se a vaga é um jogo de volume, e o jeito óbvio de vencer é deixar um modelo escrever a carta. É também assim que um empregador acaba lendo um item que nunca aconteceu. Isto resolve o volume sob uma única restrição: o modelo só pode escolher itens que eu escrevi à mão.",
+            highlights: [
+                {
+                    title: "O modelo responde com ids, não com texto",
+                    body: "Tudo que é verificável — empresas, datas, tecnologias, números — fica num arquivo de perfil. O schema não tem campo por onde texto inventado possa chegar, porque o modelo responde com ids de itens. Depois uma etapa de reconciliação descarta qualquer id que não exista, refaz a ordenação e recalcula do zero todas as flags e a lista de lacunas, em vez de confiar nas que recebeu.",
+                },
+                {
+                    title: "Dois orçamentos de repetição, porque são dois erros diferentes",
+                    body: "Uma resposta malformada e uma resposta bem formada porém errada não são a mesma falha. A primeira volta para o modelo com a própria saída e os erros exatos de validação, no orçamento dela. A segunda tem um orçamento menor e separado — e quando ele acaba o valor é aceito de propósito, para que uma flag mostre o problema a uma pessoa em vez de ele sumir dentro de um laço de repetição.",
+                },
+                {
+                    title: "Um PDF está a um arrastar de uma candidatura real",
+                    body: "Dezoito códigos de flag marcam uma candidatura como insegura de enviar: uma tecnologia que o perfil não sustenta, uma carta citando a empresa errada, um salário na moeda errada. A geração recusa de imediato diante de uma flag bloqueante, e forçar carimba a página com DRAFT — UNVERIFIED CLAIMS.",
+                },
+                {
+                    title: "O tempo de resposta é o diagnóstico, não uma métrica",
+                    body: "Uma recusa em menos de uma hora significa que um filtro automático leu o CV e nenhuma pessoa leu; dias significam que alguém leu. Ele usa a mediana, nunca a média, para que uma resposta de três meses não descreva o funil inteiro. Um email de confirmação de recebimento é uma categoria própria e nunca um desfecho — registrá-lo criaria um tempo de resposta de minutos e inverteria a leitura de todo o resto.",
+                },
+            ],
+            stack: ["TypeScript", "Node.js", "Fastify", "SQLite", "Zod", "Gemini", "Claude", "Puppeteer"],
+            links: [{ label: "Código", href: "https://github.com/AndreOleari015/job-tailor" }],
+        },
+        {
+            slug: "product-radar",
+            name: "Product Radar",
+            tagline: "Qual produto vale vender, e em qual país",
+            year: "2026",
+            media: "wide",
+            shots: [
+                { src: "/shots/product-radar-ranking.4f70580f.webp", alt: "Oportunidades de produto e mercado ranqueadas, cada uma com a nota ao lado da confiança" },
+                { src: "/shots/product-radar-matrix.75f33890.webp", alt: "Mapa de calor de produto por país mostrando onde cada produto pontua melhor" },
+            ],
+            summary:
+                "Inteligência de produto para bens físicos. Puxa catálogos de fornecedor, anúncios de marketplace, demanda por palavra-chave e câmbio, e pontua cada produto contra sete mercados europeus. O difícil não é a nota — é recusar mostrar um número que os dados não sustentam.",
+            highlights: [
+                {
+                    title: "Dois números que nunca se misturam",
+                    body: "Cada oportunidade carrega uma nota — quão atrativa ela é, se o dado estiver certo — e uma confiança, o quanto dá para confiar nesse dado. 92/35 e 86/94 são produtos diferentes, e juntar os dois numa média só esconderia exatamente a distinção que a ferramenta existe para fazer. Dado faltando derruba a confiança; nunca vira zero calado.",
+                },
+                {
+                    title: "Pontuação que sabe o que não sabe",
+                    body: "Um componente sem dado sai da média ponderada e os pesos restantes são renormalizados, com a lacuna registrada. Abaixo de metade do peso que sobrou a linha é marcada como dado insuficiente em vez de receber nota baixa — um produto não é ruim só porque ninguém mediu.",
+                },
+                {
+                    title: "A arquitetura é uma regra de lint, não uma convenção",
+                    body: "O pacote de domínio não faz I/O nenhum: importar o banco, um adaptador ou qualquer módulo do node quebra o build, e um teste-sonda confere que a regra continua mordendo. Todo sistema externo fica atrás de uma porta com implementação real e simulada, então o pipeline inteiro roda de ponta a ponta sem nenhuma credencial.",
+                },
+                {
+                    title: "Postgres fazendo o trabalho que as pessoas buscam uma fila para fazer",
+                    body: "As etapas de coleta pegam trabalho com FOR UPDATE SKIP LOCKED, e reservas travadas são liberadas — o que protege a cota da API e não o dado, porque as etapas são idempotentes. As observações são append-only e indexadas por quando foram observadas, então o ranking de qualquer dia passado pode ser refeito. Fuzzing da pontuação com NaN pegou um bug real: NaN falha em toda comparação, então o clamp deixou passar, e o Postgres ordena esse valor acima de qualquer número real.",
+                },
+            ],
+            stack: ["TypeScript", "Next.js", "PostgreSQL", "Drizzle", "Zod", "Vitest", "PGlite"],
+            links: [],
+            note: "Código fechado",
         },
     ],
     experience: {
@@ -524,8 +664,9 @@ const pt: Dictionary = {
         heading: "Ferramentas que uso",
         groups: [
             { label: "Mobile", items: ["React Native", "Expo", "expo-router", "TypeScript", "SwiftUI", "WidgetKit"] },
-            { label: "Backend e dados", items: ["Cloudflare Workers", "R2", "Firebase", "Firestore", "Cloud Functions", "Node.js", "REST"] },
-            { label: "Release e operação", items: ["EAS Build", "Fastlane", "GitHub Actions", "RevenueCat", "AdMob", "Remote Config"] },
+            { label: "Backend e dados", items: ["Node.js", "Fastify", "PostgreSQL", "Drizzle", "SQLite", "Cloudflare Workers", "Firestore", "Zod"] },
+            { label: "IA e visão computacional", items: ["Gemini", "Claude", "Structured output", "Python", "YOLOv8", "Pose estimation", "FastAPI", "NumPy"] },
+            { label: "Release e operação", items: ["EAS Build", "Fastlane", "GitHub Actions", "Vitest", "RevenueCat", "AdMob", "Remote Config"] },
         ],
     },
     contact: {
