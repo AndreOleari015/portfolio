@@ -5,7 +5,7 @@ import { useEffect } from "react";
 /**
  * Observa tudo que tem [data-reveal] e marca como visível ao entrar na tela.
  * Fica solto no layout para que os componentes de servidor continuem sendo de
- * servidor — eles só precisam declarar o atributo.
+ * servidor: eles só precisam declarar o atributo.
  */
 export const Motion = () => {
     useEffect(() => {

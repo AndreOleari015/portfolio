@@ -1,6 +1,6 @@
 import type { LegalDoc } from "@/content/product-radar";
 
-/** Renderiza política de privacidade e termos — mesma estrutura nos dois. */
+/** Renderiza política de privacidade e termos, que têm a mesma estrutura. */
 export const LegalDocument = ({ doc }: { doc: LegalDoc }) => (
     <article className="max-w-3xl">
         <p className="label">{doc.updated}</p>

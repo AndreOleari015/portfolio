@@ -2,7 +2,7 @@
 
 /**
  * Alterna claro/escuro. Qual ícone aparece é decidido só por CSS
- * (`.icon-sun` / `.icon-moon`), então não há divergência de hidratação —
+ * (`.icon-sun` / `.icon-moon`), então não há divergência de hidratação:
  * o servidor não precisa saber o tema do visitante.
  */
 export const ThemeToggle = ({ label }: { label: string }) => {
@@ -16,7 +16,7 @@ export const ThemeToggle = ({ label }: { label: string }) => {
         try {
             localStorage.setItem("theme", next);
         } catch {
-            // modo privado bloqueia storage — o toggle ainda funciona nesta sessão
+            // modo privado bloqueia storage, e o toggle ainda funciona nesta sessão
         }
     };
 

@@ -42,7 +42,7 @@ export default async function ProductRadarPage({ params }: Params) {
                 ))}
             </div>
 
-            <section className="mt-20 border-t border-border pt-12">
+            <section className="mt-20">
                 <h2 className="text-2xl font-semibold tracking-tight">
                     {content.featuresHeading}
                 </h2>
@@ -58,7 +58,7 @@ export default async function ProductRadarPage({ params }: Params) {
                 </div>
             </section>
 
-            <section className="mt-20 border-t border-border pt-12">
+            <section className="mt-20">
                 <h2 className="text-2xl font-semibold tracking-tight">{content.apiHeading}</h2>
                 <p className="mt-4 max-w-3xl text-muted">{content.apiIntro}</p>
                 <ul className="mt-8 flex max-w-3xl flex-col gap-4">
@@ -70,7 +70,7 @@ export default async function ProductRadarPage({ params }: Params) {
                 </ul>
             </section>
 
-            <section className="mt-20 border-t border-border pt-12">
+            <section className="mt-20">
                 <h2 className="text-2xl font-semibold tracking-tight">
                     {content.contactHeading}
                 </h2>

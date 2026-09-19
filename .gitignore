@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Originais do ensaio fotográfico (62 MB). Só os derivados otimizados de
+# public/portrait/ entram no repositório.
+/assets
+
+# Notas de trabalho, so minhas. O repositorio e publico, e elas carregam
+# raciocinio interno, caminhos desta maquina e nomes de projeto que nao
+# aparecem no site.
+/memory

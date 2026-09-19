@@ -1,5 +1,5 @@
 /**
- * Conteúdo das páginas do Product Radar — a home do app, a política de
+ * Conteúdo das páginas do Product Radar: a home do app, a política de
  * privacidade e os termos.
  *
  * Existem porque a Brand Verification do Google exige que um app em produção
@@ -48,7 +48,7 @@ const SCOPE = "https://www.googleapis.com/auth/adwords";
 
 const en: ProductRadarContent = {
     meta: {
-        title: "Product Radar — private keyword research and campaign planning",
+        title: "Product Radar, private keyword research and campaign planning",
         description:
             "Private, single-operator tool that researches search demand for physical products and turns it into Google Ads campaigns.",
     },
@@ -84,7 +84,7 @@ const en: ProductRadarContent = {
     apiPoints: [
         `Scope requested: ${SCOPE}.`,
         "Data read: keyword ideas, monthly search volume, historical metrics and top-of-page bid estimates, through KeywordPlanIdeaService.",
-        "Purpose: planning and managing the operator's own Google Ads campaigns — choosing keywords, choosing the country to target, and sizing the budget.",
+        "Purpose: planning and managing the operator's own Google Ads campaigns: choosing keywords, choosing the country to target, and sizing the budget.",
         "The data is never sold, published or shared with any third party.",
         "Access can be revoked at any time at myaccount.google.com/permissions, which invalidates the stored token immediately.",
     ],
@@ -93,7 +93,7 @@ const en: ProductRadarContent = {
     privacyLabel: "Privacy Policy",
     termsLabel: "Terms of Service",
     privacy: {
-        title: "Product Radar — Privacy Policy",
+        title: "Product Radar Privacy Policy",
         updated: "Last updated: 12 September 2026",
         intro: "This policy describes what information Product Radar accesses, how it is used, where it is stored and how it can be removed. Product Radar is a private tool operated by Andre Oleari. It is not offered to the public and has no users other than its operator.",
         sections: [
@@ -101,14 +101,14 @@ const en: ProductRadarContent = {
                 heading: "1. Information accessed",
                 body: ["Product Radar accesses only two categories of information:"],
                 bullets: [
-                    `Google Ads data — keyword ideas, monthly search volume, historical metrics and bid estimates, read from the operator's own Google Ads manager account through the Google Ads API using the scope ${SCOPE}.`,
-                    "OAuth credentials — the access and refresh tokens issued by Google when the operator grants that access.",
+                    `Google Ads data: keyword ideas, monthly search volume, historical metrics and bid estimates, read from the operator's own Google Ads manager account through the Google Ads API using the scope ${SCOPE}.`,
+                    "OAuth credentials: the access and refresh tokens issued by Google when the operator grants that access.",
                 ],
             },
             {
                 heading: "2. Information not accessed",
                 body: [
-                    "Product Radar does not access Gmail, Drive, Calendar, Contacts, Photos or any other Google service. It does not access any Google Ads account other than the operator's own. It collects no personal data about any other person, and has no mechanism to do so — there is no registration, no form and no login for third parties.",
+                    "Product Radar does not access Gmail, Drive, Calendar, Contacts, Photos or any other Google service. It does not access any Google Ads account other than the operator's own. It collects no personal data about any other person, and has no mechanism to do so: there is no registration, no form and no login for third parties.",
                 ],
             },
             {
@@ -134,7 +134,7 @@ const en: ProductRadarContent = {
             {
                 heading: "6. Sharing",
                 body: [
-                    "No information obtained through the Google Ads API is sold, rented, published, or shared with any third party — including any analytics, advertising or data-broker service. There are no third-party processors.",
+                    "No information obtained through the Google Ads API is sold, rented, published, or shared with any third party, including any analytics, advertising or data-broker service. There are no third-party processors.",
                 ],
             },
             {
@@ -165,7 +165,7 @@ const en: ProductRadarContent = {
         ],
     },
     terms: {
-        title: "Product Radar — Terms of Service",
+        title: "Product Radar Terms of Service",
         updated: "Last updated: 12 September 2026",
         intro: "Product Radar is a private application operated by Andre Oleari. These terms describe the basis on which it is made available.",
         sections: [
@@ -216,7 +216,7 @@ const en: ProductRadarContent = {
 
 const pt: ProductRadarContent = {
     meta: {
-        title: "Product Radar — pesquisa de palavras-chave e planejamento de campanhas",
+        title: "Product Radar, pesquisa de palavras-chave e planejamento de campanhas",
         description:
             "Ferramenta privada, de operador único, que pesquisa demanda de busca para produtos físicos e a transforma em campanhas do Google Ads.",
     },
@@ -252,7 +252,7 @@ const pt: ProductRadarContent = {
     apiPoints: [
         `Escopo solicitado: ${SCOPE}.`,
         "Dados lidos: sugestões de palavras-chave, volume mensal de busca, métricas históricas e estimativas de lance, via KeywordPlanIdeaService.",
-        "Finalidade: planejar e gerenciar as campanhas do Google Ads do próprio operador — escolher palavras-chave, escolher o país a segmentar e dimensionar o orçamento.",
+        "Finalidade: planejar e gerenciar as campanhas do Google Ads do próprio operador: escolher palavras-chave, escolher o país a segmentar e dimensionar o orçamento.",
         "Os dados nunca são vendidos, publicados ou compartilhados com terceiros.",
         "O acesso pode ser revogado a qualquer momento em myaccount.google.com/permissions, o que invalida o token armazenado imediatamente.",
     ],
@@ -261,7 +261,7 @@ const pt: ProductRadarContent = {
     privacyLabel: "Política de Privacidade",
     termsLabel: "Termos de Serviço",
     privacy: {
-        title: "Product Radar — Política de Privacidade",
+        title: "Política de Privacidade do Product Radar",
         updated: "Última atualização: 12 de setembro de 2026",
         intro: "Esta política descreve quais informações o Product Radar acessa, como são usadas, onde ficam armazenadas e como podem ser removidas. O Product Radar é uma ferramenta privada operada por Andre Oleari. Não é oferecida ao público e não tem usuários além do operador.",
         sections: [
@@ -269,14 +269,14 @@ const pt: ProductRadarContent = {
                 heading: "1. Informações acessadas",
                 body: ["O Product Radar acessa apenas duas categorias de informação:"],
                 bullets: [
-                    `Dados do Google Ads — sugestões de palavras-chave, volume mensal de busca, métricas históricas e estimativas de lance, lidos da conta de administrador do próprio operador pela API do Google Ads, usando o escopo ${SCOPE}.`,
-                    "Credenciais OAuth — os tokens de acesso e de atualização emitidos pelo Google quando o operador concede esse acesso.",
+                    `Dados do Google Ads: sugestões de palavras-chave, volume mensal de busca, métricas históricas e estimativas de lance, lidos da conta de administrador do próprio operador pela API do Google Ads, usando o escopo ${SCOPE}.`,
+                    "Credenciais OAuth: os tokens de acesso e de atualização emitidos pelo Google quando o operador concede esse acesso.",
                 ],
             },
             {
                 heading: "2. Informações não acessadas",
                 body: [
-                    "O Product Radar não acessa Gmail, Drive, Agenda, Contatos, Fotos ou qualquer outro serviço do Google. Não acessa nenhuma conta do Google Ads além da do operador. Não coleta dados pessoais de nenhuma outra pessoa, e não tem mecanismo para isso — não há cadastro, formulário ou login para terceiros.",
+                    "O Product Radar não acessa Gmail, Drive, Agenda, Contatos, Fotos ou qualquer outro serviço do Google. Não acessa nenhuma conta do Google Ads além da do operador. Não coleta dados pessoais de nenhuma outra pessoa, e não tem mecanismo para isso: não há cadastro, formulário ou login para terceiros.",
                 ],
             },
             {
@@ -302,7 +302,7 @@ const pt: ProductRadarContent = {
             {
                 heading: "6. Compartilhamento",
                 body: [
-                    "Nenhuma informação obtida pela API do Google Ads é vendida, alugada, publicada ou compartilhada com terceiros — incluindo serviços de analytics, de publicidade ou de intermediação de dados. Não há operadores terceirizados.",
+                    "Nenhuma informação obtida pela API do Google Ads é vendida, alugada, publicada ou compartilhada com terceiros, incluindo serviços de analytics, de publicidade ou de intermediação de dados. Não há operadores terceirizados.",
                 ],
             },
             {
@@ -333,7 +333,7 @@ const pt: ProductRadarContent = {
         ],
     },
     terms: {
-        title: "Product Radar — Termos de Serviço",
+        title: "Termos de Serviço do Product Radar",
         updated: "Última atualização: 12 de setembro de 2026",
         intro: "O Product Radar é uma aplicação privada operada por Andre Oleari. Estes termos descrevem a base sobre a qual ela é disponibilizada.",
         sections: [

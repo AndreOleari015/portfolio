@@ -1,13 +1,23 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Hanken_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Motion } from "@/components/motion";
 import { getDictionary, isLocale, locales, profile } from "@/content/dictionary";
 import "../globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+/**
+ * Grotesca geométrica para texto e display, mono para dado. Hanken Grotesk tem
+ * itálico próprio, usado na nota de rodapé da experiência.
+ */
+const hanken = Hanken_Grotesk({
+    variable: "--font-hanken",
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    display: "swap",
+});
+
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 /**
@@ -28,7 +38,7 @@ const SITE_URL =
 
 /**
  * Token de verificação de propriedade do Google Search Console. É público por
- * natureza — sai no HTML de toda página. Existe porque a Brand Verification do
+ * natureza, sai no HTML de toda página. Existe porque a Brand Verification do
  * OAuth exige que o domínio declarado como autorizado seja comprovadamente seu.
  */
 const GOOGLE_SITE_VERIFICATION = "myZkF34bGLh-jYlMoZCBPviYKX5QFhJlihZocTWJr1Q";
@@ -48,7 +58,7 @@ export const generateMetadata = async ({
         url: `/og-${locale}.png`,
         width: 1200,
         height: 630,
-        alt: `${profile.name} — ${dict.hero.role}, ${dict.hero.location}`,
+        alt: `${profile.name}. ${dict.hero.role}, ${dict.hero.location}`,
     };
 
     return {
@@ -93,7 +103,7 @@ export default async function LocaleLayout({
         <html
             lang={locale}
             suppressHydrationWarning
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+            className={`${hanken.variable} ${geistMono.variable} h-full antialiased`}>
             <head>
                 <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
             </head>

@@ -1,74 +1,57 @@
 import type { Dictionary } from "@/content/dictionary";
 
+/**
+ * Sem fios entre os cargos: quem separa um do outro é o período, em mono, na
+ * margem. O fio só repetiria a informação que a data já dá.
+ *
+ * A margem agora encosta na borda direita do `shell`: presa em 15rem ela
+ * parava no meio da página e deixava 400px mortos à direita de cada cargo.
+ * O nome da empresa saiu do azul: acento é para marca, § e link, e um nome em
+ * azul que não é clicável é promessa quebrada três vezes na mesma página.
+ */
 export const Experience = ({ dict }: { dict: Dictionary }) => (
     <>
-        <ol className="relative space-y-10 pl-7 md:pl-10">
-            {/* Trilho da linha do tempo, esmaecendo no fim */}
-            <span
-                aria-hidden
-                className="absolute inset-y-0 left-1 w-px -translate-x-1/2 bg-gradient-to-b from-border-strong via-border to-transparent"
-            />
-
+        <ol className="space-y-14 md:space-y-16">
             {dict.experience.jobs.map((job, i) => (
                 <li
                     key={`${job.company}-${job.period}`}
                     data-reveal
                     style={{ "--reveal-delay": `${i * 90}ms` } as React.CSSProperties}
-                    className="relative">
-                    <span
-                        aria-hidden
-                        className="timeline-dot absolute top-2 -left-7 size-2 rounded-full bg-accent ring-4 ring-bg md:-left-10"
-                    />
+                    className="doc">
+                    <div className="measure-wide">
+                        <p className="label text-accent">{job.company}</p>
+                        <h3 className="subhead mt-2.5">{job.role}</h3>
 
-                    <div className="card card-lift rounded-xl border border-border p-5 md:p-6">
-                        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                            <h3 className="font-semibold tracking-tight">
-                                {job.role}
-                                <span className="text-faint"> · </span>
-                                <span className="font-normal text-muted">{job.company}</span>
-                            </h3>
-                            <p className="label">
-                                {job.period} <span className="text-border-strong">/</span>{" "}
-                                {job.location}
-                            </p>
-                        </div>
-
-                        <ul className="mt-4 space-y-2.5">
+                        <ul className="mt-5 space-y-2">
                             {job.bullets.map((bullet) => (
                                 <li
                                     key={bullet}
-                                    className="relative pl-5 text-sm leading-relaxed text-muted before:absolute before:top-[0.6875em] before:left-0 before:size-1 before:rounded-full before:bg-border-strong">
+                                    className="relative pl-5 text-[0.9375rem] leading-relaxed text-muted before:absolute before:top-[0.7em] before:left-0 before:size-1 before:rounded-full before:bg-border-strong">
                                     {bullet}
                                 </li>
                             ))}
                         </ul>
 
                         {job.apps ? (
-                            <div className="mt-6 border-t border-border pt-5">
-                                <h4 className="label">{job.apps.label}</h4>
-                                <ul className="mt-3 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-                                    {job.apps.items.map((app) => {
-                                        const [name, ...rest] = app.split(" — ");
-                                        return (
-                                            <li key={app} className="text-sm text-muted">
-                                                <span className="text-text">{name}</span>
-                                                {rest.length ? (
-                                                    <span className="text-faint"> — {rest.join(" — ")}</span>
-                                                ) : null}
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            </div>
+                            <p className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                                <span className="label">{job.apps.label}</span>
+                                <span className="font-mono text-xs leading-relaxed text-muted">
+                                    {job.apps.items.join("  ·  ")}
+                                </span>
+                            </p>
                         ) : null}
                     </div>
+
+                    <p className="margin-note lg:pt-1.5 lg:text-right">
+                        {job.period}
+                        <br />
+                        {job.location}
+                    </p>
                 </li>
             ))}
         </ol>
 
-        <p
-            data-reveal
-            className="mt-12 max-w-2xl border-l-2 border-accent/40 pl-5 text-sm leading-relaxed text-muted italic">
+        <p data-reveal className="measure-wide mt-14 text-faint italic">
             {dict.experience.earlierNote}
         </p>
     </>
