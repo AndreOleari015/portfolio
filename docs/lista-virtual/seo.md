@@ -29,12 +29,16 @@ e marcação de avaliação vinda da própria empresa é motivo de ação manual
 
 ## Ícone da aba
 
-- `app/[locale]/lista-virtual/icon.png` (256px, recorte justo do anel do ícone do app, para o LV se ler
-  em 16px) e `apple-icon.png` (180px, o ícone do app inteiro). Valem para a landing e a política de
+- `public/logos/lista-virtual-icon.*.png` (256px, recorte justo do anel do ícone do app, para o LV se
+  ler em 16px) e `lista-virtual-apple-icon.*.png` (180px, o ícone do app inteiro), declarados no
+  `metadata.icons` de `app/[locale]/lista-virtual/layout.tsx`. Valem para a landing e a política de
   privacidade; o resto do site continua com `app/icon.png` e `app/apple-icon.png`, do portfólio.
-- O Next serve esses arquivos em `/-/lista-virtual/icon.png` (o `-` é o lugar do `[locale]`), e troca o
-  `<link rel="icon">` na navegação sem recarregar, nos dois sentidos e no Voltar do navegador.
-- `favicon.ico` só pode existir na raiz de `app/`, por isso é `icon.png` e não `favicon.ico`.
+- A metadata de segmentos diferentes se junta de forma rasa: o `icons` do layout da landing
+  substitui o da raiz inteiro. O Next troca o `<link rel="icon">` na navegação sem recarregar, nos
+  dois sentidos e no Voltar do navegador.
+- Não usar os arquivos `icon.png` e `apple-icon.png` dentro de `app/[locale]/lista-virtual/`: debaixo
+  do segmento dinâmico o build local passa, mas o da Vercel para em "Invariant: failed to find source
+  route /[locale]/lista-virtual/apple-icon.png" (24/09/2026, Next 16.2.10).
 
 ## Imagens
 
