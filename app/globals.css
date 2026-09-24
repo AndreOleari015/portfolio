@@ -653,3 +653,1666 @@ body::after {
         opacity: 1;
     }
 }
+
+/* ===========================================================================
+   LISTA VIRTUAL
+   A página do app veste a marca do app, direção "Joalheria / Cofre": uma
+   vitrine de joalheria à noite. Fundo âmbar (nunca preto frio), ouro que é
+   latão, e a serifa Wittgenstein do app.
+
+   Um tema só, de propósito: a noite quente É a marca. As cores saem de
+   `src/constants/colors.ts` do app; mudou lá, muda aqui. Os tokens do site
+   são trocados dentro do escopo, então os utilitários do portfólio (bg-bg,
+   text-muted, border-border) falam a língua do app.
+
+   O brilho é a marca, mas em meia-luz. Em 23/09 cada peça dourada tinha
+   halo forte (joia, faíscas, estrela, botões, ícones, linhas de convidado) e
+   a página parecia vitrine com luz demais. Tirar todo o halo foi longe
+   demais: o ouro virou tinta chapada e a joia apagou. O ponto certo é o
+   halo que está aqui, perto da metade do de antes. E nenhum fio atravessa a
+   página: entre seções, o que separa é espaço, como no resto do site.
+   =========================================================================== */
+
+/* O que fica fora da página também é noite. A calha da barra de rolagem e o
+   rubber band do Safari pintam com o fundo da raiz, que era o do portfólio:
+   um preto frio com polegar azulado no tema escuro, creme no claro. Mesma
+   especificidade das regras de tema lá em cima, e vence por vir depois. */
+:root:has(.brand-lista) {
+    --bg: #14110c;
+    --border-strong: #463c28;
+    --text-faint: #8a7f68;
+    color-scheme: dark;
+}
+
+.brand-lista {
+    --bg: #14110c;
+    --bg-elevated: #1e1a12;
+    --surface: #1b1710;
+    --surface-high: #221d14;
+    --border: #2e2718;
+    --border-strong: #463c28;
+    --text: #ede4d0;
+    --text-muted: #c7bca2;
+    --text-faint: #8a7f68;
+    --accent: #d4a83a;
+    --accent-bright: #e6c46a;
+    --accent-soft: #3a2c12;
+    --accent-contrast: #2a1e05;
+    --glow: 212 168 58;
+
+    --gold-deep: #a9781a;
+    --gold-mid: #c9a227;
+    --gold-light: #e6c46a;
+    --gold-hi: #f5e1a0;
+    --gold-ink: #2a1e05;
+    --ivory: #f3ead6;
+    --row-on: #3a2c12;
+    /* O realce do topo de cada gradiente desceu de #f5e1a0, quase branco, para
+       um creme dourado: o metal continua reagindo à luz, sem parecer molhado. */
+    --brass: linear-gradient(180deg, #eed48c 0%, #e0bd5a 35%, #c9a227 70%, #b3861f 100%);
+    --brass-ring: linear-gradient(135deg, #eed48c, #e0bd5a 40%, #b3861f);
+    --brass-text: linear-gradient(100deg, #c9a227 0%, #ead08a 48%, #e0bd5a 70%, #b98b1f 100%);
+
+    /* Escala tipográfica: dez tamanhos, e nenhum texto fora dela. Os três
+       maiores são fluidos (celular → desktop). Tabela e regras em
+       `docs/lista-virtual/design-system.md`. */
+    --lv-fs-display: clamp(2.9rem, 5vw, 4.25rem);
+    --lv-fs-h1: clamp(2rem, 4vw, 3.25rem);
+    --lv-fs-h2: clamp(1.75rem, 2.8vw, 2.5rem);
+    --lv-fs-h3: 1.75rem;
+    --lv-fs-h4: 1.375rem;
+    --lv-fs-h5: 1.125rem;
+    --lv-fs-lead: 1.125rem;
+    --lv-fs-body: 1.0625rem;
+    --lv-fs-small: 0.9375rem;
+    --lv-fs-caption: 0.8125rem;
+    --lv-fs-label: 0.75rem;
+    --lv-track-label: 0.14em;
+
+    /* Duas famílias e só: a serifa do app nos títulos e números, a do sistema
+       (SF Pro no iPhone, como o próprio app) em todo o resto. */
+    --lv-font-serif: var(--font-wittgenstein), Georgia, "Times New Roman", serif;
+    --lv-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto,
+        sans-serif;
+
+    color-scheme: dark;
+    font-family: var(--lv-font-sans);
+    font-size: var(--lv-fs-body);
+
+    /* Uma luz só, atrás dos telefones da vitrine. Ela mora no fundo da página
+       e não na seção, então começa acima do cabeçalho: os dois dividem o mesmo
+       fundo e não sobra emenda entre eles. */
+    background:
+        radial-gradient(46rem 34rem at 58% 28rem, rgb(212 168 58 / 0.1), transparent 65%),
+        var(--bg);
+}
+
+/* ── Tipografia ─────────────────────────────────────────────────────────── */
+.lv-serif {
+    font-family: var(--lv-font-serif);
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+}
+
+/* O título do hero divide a largura com o telefone e a coluna da direita, por
+   isso é menor que o de antes (5.6rem): "convidados" precisa caber em 430px
+   sem encostar no anel. */
+.lv-display {
+    font-size: var(--lv-fs-display);
+    line-height: 0.98;
+    letter-spacing: -0.028em;
+}
+
+.lv-display em {
+    font-style: italic;
+    font-weight: 500;
+}
+
+.lv-section-title {
+    font-size: var(--lv-fs-h1);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+}
+
+.lv-statement {
+    max-width: 16ch;
+    font-size: var(--lv-fs-display);
+    line-height: 1.02;
+    letter-spacing: -0.028em;
+}
+
+.lv-eyebrow {
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    text-transform: uppercase;
+    color: var(--gold-light);
+}
+
+.lv-lead {
+    font-size: var(--lv-fs-lead);
+    line-height: 1.6;
+    color: var(--text-muted);
+    text-wrap: pretty;
+}
+
+.lv-fine {
+    font-size: var(--lv-fs-caption);
+    color: var(--text-faint);
+}
+
+.lv-brass-text {
+    background: var(--brass-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* O itálico estoura a caixa à direita e o clip cortaria a última letra. */
+    padding-right: 0.08em;
+}
+
+/* "sem papel" com o traço dourado feito à mão por baixo. */
+.lv-accent-word {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.lv-swash {
+    position: absolute;
+    left: -2%;
+    bottom: -0.16em;
+    width: 104%;
+    height: 0.24em;
+    overflow: visible;
+    fill: none;
+    stroke: url(#lv-swash-gold);
+    stroke-width: 5;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+}
+
+.lv-swash-thin {
+    stroke-width: 2.5;
+    opacity: 0.55;
+}
+
+/* ── Cabeçalho ──────────────────────────────────────────────────────────── */
+.lv-header {
+    display: flex;
+    height: 5rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.lv-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.lv-brand .lv-serif {
+    font-size: var(--lv-fs-h5);
+    white-space: nowrap;
+}
+
+.lv-seal {
+    width: 2.25rem;
+    height: auto;
+    opacity: 0.9;
+}
+
+.lv-nav {
+    display: none;
+    gap: 2.25rem;
+    font-size: var(--lv-fs-small);
+    color: var(--text-muted);
+}
+
+.lv-nav a,
+.lv-lang a {
+    transition: color 0.2s ease;
+}
+
+.lv-nav a:hover,
+.lv-lang a:hover {
+    color: var(--text);
+}
+
+.lv-header-end {
+    display: flex;
+    align-items: center;
+    gap: 1.125rem;
+}
+
+.lv-lang {
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    color: var(--text-faint);
+    white-space: nowrap;
+}
+
+.lv-lang b {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.lv-lang-current {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .lv-header {
+        height: 6rem;
+    }
+
+    .lv-lang-current {
+        display: inline;
+    }
+}
+
+@media (min-width: 960px) {
+    .lv-nav {
+        display: flex;
+    }
+}
+
+/* ── Hero ───────────────────────────────────────────────────────────────── */
+/* Três colunas de medida fixa a partir de 1180px, que é quando o `shell`
+   chega aos 1040px de miolo (420 de texto + 350 de palco + 270 de cartões).
+   É a medida fixa que deixa os fios do palco desenharem em coordenada
+   absoluta. Abaixo disso, uma coluna. */
+.lv-hero {
+    display: grid;
+    gap: 2.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 6rem;
+}
+
+.lv-hero-sub {
+    max-width: 24rem;
+}
+
+@media (min-width: 1180px) {
+    .lv-hero {
+        grid-template-columns: 420px 620px;
+        gap: 0;
+        align-items: center;
+        padding-top: 2rem;
+        padding-bottom: 9rem;
+    }
+}
+
+.lv-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 0.55rem 1.05rem;
+    font-size: var(--lv-fs-caption);
+    color: var(--text-muted);
+    background: rgb(34 29 20 / 0.6);
+}
+
+.lv-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.lv-badges img {
+    width: auto;
+    height: 2.75rem;
+}
+
+@media (min-width: 768px) {
+    .lv-badges img {
+        height: 3rem;
+    }
+}
+
+/* Palco e coluna dos cartões moram no mesmo componente (o que alterna os
+   slides), que é uma grade própria dentro da grade do hero. */
+.lv-hero-stage {
+    display: grid;
+    gap: 2.5rem;
+}
+
+@media (min-width: 1180px) {
+    .lv-hero-stage {
+        grid-template-columns: 350px 270px;
+        gap: 0;
+    }
+}
+
+/* O palco: o telefone em pé, o anel da marca atrás, os pontos da tela. */
+/* 500px no celular: o telefone de 200px, o anel e, embaixo, as barrinhas. */
+.lv-stage {
+    position: relative;
+    height: 31.25rem;
+}
+
+.lv-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 23.75rem;
+    height: 23.75rem;
+    translate: -50% -50%;
+    border: 1.5px solid rgb(201 162 39 / 0.5);
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px rgb(230 196 106 / 0.22));
+    pointer-events: none;
+    animation: lv-breathe 6s ease-in-out infinite;
+}
+
+.lv-ring i {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow: 0 0 8px rgb(230 196 106 / 0.5);
+}
+
+.lv-ring i:nth-child(1) {
+    left: 14.6%;
+    top: 85.4%;
+}
+
+.lv-ring i:nth-child(2) {
+    left: 96%;
+    top: 30%;
+}
+
+.lv-ring i:nth-child(3) {
+    left: 50%;
+    top: 0;
+}
+
+.lv-stage-phone {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 12.5rem;
+    translate: -50% -50%;
+    filter: drop-shadow(0 30px 40px rgb(8 5 2 / 0.7));
+}
+
+/* Os dois pontos ficam no QR e no botão do WhatsApp da tela, em porcentagem
+   do molde: medidos na captura (QR a 38% da altura, botão a 72%) e passados
+   para a área da tela dentro do molde. */
+.lv-dot {
+    position: absolute;
+    z-index: 1;
+    width: 14px;
+    height: 14px;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: var(--gold-light);
+    box-shadow:
+        0 0 0 4px rgb(230 196 106 / 0.22),
+        0 0 12px rgb(230 196 106 / 0.55);
+}
+
+.lv-dot b {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold-ink);
+}
+
+/* Os pontos de cada slide ficam num grupo do tamanho do molde, e cada um é
+   posicionado pelo conteúdo (x e y em porcentagem do molde). */
+.lv-dots {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.lv-sparkle-a {
+    position: absolute;
+    left: 6%;
+    top: 10%;
+    width: 1.875rem;
+    height: 1.875rem;
+}
+
+.lv-sparkle-b {
+    position: absolute;
+    right: 4%;
+    bottom: 16%;
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.lv-lines {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 620px;
+    height: 620px;
+    overflow: visible;
+    pointer-events: none;
+    fill: none;
+    stroke: rgb(230 196 106 / 0.55);
+    stroke-width: 1;
+}
+
+/* Coluna da direita: a nota da loja e as duas anotações. No telefone as
+   anotações vêm primeiro, logo abaixo dos pontos que elas explicam. */
+.lv-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.lv-trust {
+    order: 3;
+    padding-top: 0.5rem;
+}
+
+/* Empilha as versões que se alternam (texto dos cartões, depoimentos) na
+   mesma célula: ela fica com a altura da mais alta, então nada pula. */
+.lv-stack {
+    display: grid;
+}
+
+.lv-stack > * {
+    grid-area: 1 / 1;
+}
+
+/* Nos cartões, o texto mais curto fica no meio da moldura (que tem a altura
+   do mais longo), e não colado em cima com um vão embaixo. */
+.lv-note .lv-stack > * {
+    align-self: center;
+}
+
+.lv-note {
+    border: 1px solid rgb(201 162 39 / 0.3);
+    border-radius: 14px;
+    padding: 0.875rem 1rem;
+    background: rgb(34 29 20 / 0.78);
+}
+
+.lv-note-title {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--lv-font-serif);
+    font-size: var(--lv-fs-h5);
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.lv-note-title i {
+    display: grid;
+    flex: none;
+    width: 18px;
+    height: 18px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gold-light);
+    font-family: var(--lv-font-sans);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold-ink);
+}
+
+.lv-note-body {
+    margin-top: 0.375rem;
+    font-size: var(--lv-fs-small);
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* O número de uso é o destaque do bloco: grande, em serifa dourada com
+   meia-luz, e a frase embaixo. Troca junto com a tela (ver `.lv-swap`). */
+.lv-proof {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* No celular o número vai no tamanho do título do hero: no de título de seção
+   ele perdia o destaque que o bloco pede. No desktop largo ele divide uma
+   coluna de 270px com a nota e os cartões, e desce um passo da escala. */
+.lv-proof strong {
+    font-size: var(--lv-fs-display);
+    font-weight: 600;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--gold-light);
+    text-shadow: 0 0 18px rgb(230 196 106 / 0.25);
+}
+
+@media (min-width: 1180px) {
+    .lv-proof strong {
+        font-size: var(--lv-fs-h1);
+    }
+}
+
+.lv-proof span {
+    max-width: 15rem;
+    font-size: var(--lv-fs-body);
+    line-height: 1.4;
+    color: var(--text);
+    text-wrap: balance;
+}
+
+/* A nota da loja embaixo do número: estrelas de latão desenhadas (não o "★"
+   de texto, que sai na fonte do sistema e parece emoji), a nota em serifa e a
+   legenda numa linha discreta. */
+.lv-rating {
+    margin-top: 1.25rem;
+}
+
+.lv-rating-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.lv-stars {
+    width: 5.75rem;
+    height: auto;
+    overflow: visible;
+    filter: drop-shadow(0 0 6px rgb(230 196 106 / 0.25));
+}
+
+.lv-stars use {
+    stroke-width: 1.2;
+}
+
+.lv-stars-off {
+    fill: rgb(201 162 39 / 0.22);
+    stroke: rgb(201 162 39 / 0.22);
+}
+
+.lv-rating-row strong {
+    font-size: var(--lv-fs-h4);
+    line-height: 1;
+}
+
+/* A legenda da nota no mesmo rótulo em versalete do resto da página (o
+   "PAGAMENTO ÚNICO" da tabela de planos), e não uma frase cinza solta. */
+.lv-rating-label {
+    margin-top: 0.5rem;
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--gold-light);
+}
+
+/* Três barrinhas embaixo do telefone: mostram que a troca está andando (a
+   atual enche no tempo do slide) e deixam escolher a tela. */
+.lv-progress {
+    position: absolute;
+    left: 50%;
+    bottom: 0.25rem;
+    display: flex;
+    gap: 0.5rem;
+    translate: -50% 0;
+}
+
+.lv-progress button {
+    display: grid;
+    width: 2.25rem;
+    height: 1.75rem;
+    place-items: center;
+    cursor: pointer;
+}
+
+/* O traço visível é fino, mas o botão tem altura de toque. */
+.lv-progress button::before {
+    content: "";
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(201 162 39 / 0.28);
+}
+
+.lv-progress button span {
+    grid-area: 1 / 1;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--gold-light);
+    box-shadow: 0 0 6px rgb(230 196 106 / 0.4);
+    transform-origin: left;
+    scale: 0 1;
+}
+
+.lv-progress button[aria-pressed="true"] span {
+    animation: lv-fill var(--slide-ms) linear forwards;
+}
+
+.lv-progress button:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+@keyframes lv-fill {
+    to {
+        scale: 1 1;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1179px) {
+    .lv-side {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lv-trust {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 1180px) {
+    .lv-stage {
+        height: 620px;
+    }
+
+    .lv-ring {
+        width: 440px;
+        height: 440px;
+    }
+
+    .lv-stage-phone {
+        width: 240px;
+    }
+
+    .lv-lines {
+        display: block;
+    }
+
+    .lv-side {
+        position: relative;
+        display: block;
+        height: 620px;
+    }
+
+    .lv-trust,
+    .lv-note {
+        position: absolute;
+        left: 1.5rem;
+        right: 0;
+    }
+
+    .lv-trust {
+        top: 0;
+        padding-top: 0;
+    }
+
+    /* Cada cartão centrado na altura do seu fio (280 e 448 do palco),
+       qualquer que seja a altura do texto. Entre a nota da loja e o primeiro
+       cartão sobram uns 30px. */
+    .lv-note {
+        translate: 0 -50%;
+    }
+
+    .lv-note-1 {
+        top: 280px;
+    }
+
+    .lv-note-2 {
+        top: 448px;
+    }
+}
+
+/* ── Alternância do hero ─────────────────────────────────────────────────
+   Quem manda é o estado do componente (`data-active`). A tela cruza com a
+   seguinte. O resto (texto, depoimento, pontos, fios) não cruza: o que sai
+   some em 0.3s e só então o novo entra, então nunca há dois textos
+   embaralhados, nem se a troca for interrompida. */
+.lv-slide {
+    opacity: 0;
+    transition: opacity 0.9s ease;
+}
+
+.lv-swap {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lv-slide[data-active="true"] {
+    opacity: 1;
+}
+
+.lv-swap[data-active="true"] {
+    opacity: 1;
+    transition: opacity 0.5s ease 0.3s;
+}
+
+.lv-sparkle {
+    fill: var(--gold-light);
+    filter: drop-shadow(0 0 4px rgb(245 225 160 / 0.45)) drop-shadow(0 0 12px rgb(201 162 39 / 0.3));
+}
+
+.lv-float {
+    animation: lv-float 5s ease-in-out infinite;
+}
+
+.lv-float-late {
+    animation-delay: -2.5s;
+}
+
+.lv-rise {
+    animation: lv-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes lv-breathe {
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes lv-float {
+    50% {
+        translate: 0 -8px;
+        rotate: 12deg;
+    }
+}
+
+@keyframes lv-rise {
+    from {
+        opacity: 0.001;
+        translate: 0 14px;
+    }
+}
+
+/* ── A dor ──────────────────────────────────────────────────────────────── */
+.lv-pain {
+    display: grid;
+    gap: 2rem;
+}
+
+.lv-pain-body {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 30rem;
+    font-size: var(--lv-fs-lead);
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+@media (min-width: 1024px) {
+    .lv-pain {
+        grid-template-columns: 1.25fr 1fr;
+        gap: 4rem;
+        align-items: end;
+    }
+}
+
+/* ── Ícones, botões ─────────────────────────────────────────────────────── */
+.lv-icon {
+    display: grid;
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    border: 1px solid rgb(201 162 39 / 0.38);
+    border-radius: 12px;
+    color: var(--gold-light);
+    background: radial-gradient(circle at 30% 20%, rgb(230 196 106 / 0.08), transparent 70%);
+}
+
+.lv-icon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+}
+
+/* CTA de conversão: latão sólido com brilho, como o botão final do
+   onboarding. O secundário é o anel dourado do DefaultButton. */
+.lv-cta {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    gap: 0.6rem;
+    border-radius: 999px;
+    padding: 0.85rem 1.6rem;
+    font-size: var(--lv-fs-small);
+    font-weight: 600;
+    color: var(--gold-ink);
+    background: var(--brass);
+    box-shadow:
+        0 8px 24px -10px rgb(230 196 106 / 0.32),
+        inset 0 1px 0 rgb(255 255 255 / 0.45);
+    transition:
+        translate 180ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 180ms ease;
+}
+
+.lv-cta:hover {
+    translate: 0 -2px;
+    box-shadow:
+        0 12px 30px -10px rgb(230 196 106 / 0.45),
+        inset 0 1px 0 rgb(255 255 255 / 0.45);
+}
+
+.lv-cta-ring {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 1.5px;
+    background: var(--brass-ring);
+    transition: translate 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lv-cta-ring > span {
+    display: inline-flex;
+    min-height: calc(3.25rem - 3px);
+    align-items: center;
+    gap: 0.55rem;
+    border-radius: 999px;
+    padding: 0.8rem 1.5rem;
+    font-size: var(--lv-fs-small);
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--gold-light);
+    background: var(--bg);
+}
+
+.lv-cta-ring:hover {
+    translate: 0 -2px;
+}
+
+.lv-cta-sm > span {
+    min-height: calc(2.75rem - 3px);
+    padding: 0.55rem 1.15rem;
+}
+
+.lv-cta-block {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.lv-cta-ring.lv-cta-block > span {
+    width: 100%;
+    justify-content: center;
+    background: var(--surface);
+}
+
+.lv-cta:focus-visible,
+.lv-cta-ring:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 3px;
+}
+
+/* ── O que muda na portaria ─────────────────────────────────────────────── */
+.lv-bento {
+    display: grid;
+    gap: 1rem;
+    list-style: none;
+}
+
+.lv-bento-item {
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 1.75rem;
+    background: var(--surface);
+}
+
+.lv-bento-main {
+    display: flex;
+    min-height: 20rem;
+    flex-direction: column;
+    border-color: rgb(201 162 39 / 0.3);
+    background:
+        radial-gradient(28rem 18rem at 18% 0%, rgb(230 196 106 / 0.08), transparent 70%),
+        var(--surface-high);
+}
+
+.lv-bento-title {
+    margin-top: 1.25rem;
+    font-size: var(--lv-fs-h4);
+    line-height: 1.15;
+}
+
+/* O ícone fica no alto e o texto desce inteiro para a base do cartão. */
+.lv-bento-main .lv-bento-title {
+    margin-top: auto;
+    padding-top: 2.5rem;
+    font-size: var(--lv-fs-h2);
+    line-height: 1.05;
+}
+
+.lv-bento-body {
+    margin-top: 0.5rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.lv-bento-main .lv-bento-body {
+    max-width: 26rem;
+    font-size: var(--lv-fs-lead);
+}
+
+@media (min-width: 900px) {
+    .lv-bento {
+        grid-template-columns: 1.2fr 1fr;
+    }
+
+    .lv-bento-main {
+        grid-row: 1 / span 2;
+    }
+}
+
+/* ── Como funciona ──────────────────────────────────────────────────────── */
+.lv-steps-list {
+    display: none;
+    list-style: none;
+}
+
+.lv-steps-num {
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-faint);
+}
+
+.lv-steps-panels {
+    display: grid;
+    gap: 3.5rem;
+}
+
+.lv-step {
+    display: grid;
+    gap: 1.75rem;
+}
+
+.lv-step-title {
+    margin-top: 0.5rem;
+    font-size: var(--lv-fs-h3);
+    line-height: 1.1;
+}
+
+.lv-step-body {
+    margin-top: 0.75rem;
+    max-width: 28rem;
+    font-size: var(--lv-fs-lead);
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.lv-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    list-style: none;
+}
+
+.lv-tags li {
+    border: 1px solid rgb(201 162 39 / 0.35);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    font-size: var(--lv-fs-caption);
+    color: var(--gold-light);
+}
+
+.lv-step-phone {
+    width: min(62vw, 16.25rem);
+    margin-inline: auto;
+    filter: drop-shadow(0 24px 30px rgb(8 5 2 / 0.6));
+}
+
+@media (min-width: 1024px) {
+    .lv-steps {
+        display: grid;
+        grid-template-columns: 19rem 1fr;
+        gap: 2.5rem;
+        align-items: start;
+    }
+
+    .lv-steps-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .lv-steps-list button {
+        display: flex;
+        width: 100%;
+        align-items: baseline;
+        gap: 1rem;
+        border: 1px solid transparent;
+        border-radius: 18px;
+        padding: 1.1rem 1.25rem;
+        text-align: left;
+        color: var(--text-faint);
+        cursor: pointer;
+        transition:
+            color 0.25s ease,
+            background-color 0.25s ease,
+            border-color 0.25s ease;
+    }
+
+    .lv-steps-list button .lv-serif {
+        font-size: var(--lv-fs-h3);
+        line-height: 1.1;
+    }
+
+    .lv-steps-list button:hover {
+        color: var(--text-muted);
+    }
+
+    .lv-steps-list button[aria-pressed="true"] {
+        border-color: rgb(201 162 39 / 0.35);
+        color: var(--text);
+        background: var(--surface);
+    }
+
+    .lv-steps-list button[aria-pressed="true"] .lv-steps-num {
+        color: var(--gold-light);
+    }
+
+    .lv-steps-panels {
+        display: block;
+    }
+
+    .lv-step:not([data-active="true"]) {
+        display: none;
+    }
+
+    .lv-step {
+        grid-template-columns: 1fr 15rem;
+        gap: 2.5rem;
+        align-items: center;
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: 2.5rem;
+        background:
+            radial-gradient(30rem 20rem at 80% 30%, rgb(212 168 58 / 0.07), transparent 70%),
+            var(--surface);
+    }
+
+    /* No desktop o título do passo já está aceso na lista ao lado. */
+    .lv-step-copy .lv-steps-num,
+    .lv-step-title {
+        display: none;
+    }
+
+    .lv-step-body {
+        margin-top: 0;
+        color: var(--text);
+    }
+
+    .lv-step-phone {
+        width: 100%;
+    }
+}
+
+/* ── Planos ─────────────────────────────────────────────────────────────── */
+.lv-plans-head {
+    display: grid;
+    gap: 1.75rem;
+    align-items: end;
+}
+
+.lv-plans-title {
+    margin-top: 1.125rem;
+    max-width: 15ch;
+}
+
+.lv-toggle {
+    display: inline-flex;
+    justify-self: start;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 4px;
+    background: var(--surface);
+}
+
+.lv-toggle button {
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 0.75rem 1.25rem;
+    font-size: var(--lv-fs-small);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.lv-toggle button[aria-pressed="true"] {
+    border-color: rgb(201 162 39 / 0.45);
+    color: var(--gold-light);
+    background: rgb(212 168 58 / 0.12);
+}
+
+.lv-plans-table {
+    display: none;
+}
+
+.lv-plans-col {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 0 1rem 1.25rem;
+}
+
+.lv-plans-labels {
+    padding-left: 0.25rem;
+}
+
+.lv-plans-rec {
+    background: var(--surface-high);
+    box-shadow:
+        0 0 0 1.5px rgb(201 162 39 / 0.75),
+        0 0 40px -12px rgb(212 168 58 / 0.3);
+}
+
+.lv-plans-rec .lv-cta-ring > span {
+    background: var(--surface-high);
+}
+
+.lv-plans-head-cell {
+    display: flex;
+    height: 14.875rem;
+    flex-direction: column;
+    padding-top: 1.375rem;
+}
+
+.lv-plans-cell {
+    display: flex;
+    height: 3.25rem;
+    align-items: center;
+    border-top: 1px solid rgb(46 39 24 / 0.7);
+    font-size: var(--lv-fs-small);
+}
+
+.lv-plans-col:not(.lv-plans-labels) .lv-plans-cell {
+    justify-content: center;
+}
+
+.lv-plan-badge {
+    align-self: flex-start;
+    margin-bottom: 0.625rem;
+    border-radius: 999px;
+    padding: 0.3rem 0.625rem;
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+    background: var(--brass);
+}
+
+.lv-plan-badge-empty {
+    visibility: hidden;
+}
+
+.lv-plan-name {
+    font-size: var(--lv-fs-h4);
+    line-height: 1.15;
+}
+
+/* Rótulo e nota ficam dentro do cartão, em superfície mais clara que o fundo:
+   ali o cinza apagado (--text-faint) cai abaixo do AA, então vai o secundário. */
+.lv-plan-kind {
+    margin-top: 0.25rem;
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.lv-plan-price {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 0.875rem;
+}
+
+.lv-plan-price strong {
+    font-size: var(--lv-fs-h2);
+    line-height: 1;
+}
+
+.lv-plan-price span {
+    font-size: var(--lv-fs-small);
+    color: var(--text-muted);
+}
+
+.lv-plan-note {
+    margin-top: 0.375rem;
+    font-size: var(--lv-fs-caption);
+    color: var(--text-muted);
+}
+
+.lv-yes {
+    display: grid;
+    width: 22px;
+    height: 22px;
+    place-items: center;
+    border-radius: 50%;
+    color: var(--gold-ink);
+    background: var(--brass);
+    box-shadow: 0 0 10px rgb(230 196 106 / 0.18);
+}
+
+/* Traço desenhado, e não um caractere: no texto, travessão está proibido. */
+.lv-no {
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    vertical-align: middle;
+    border-radius: 1px;
+    background: var(--text-faint);
+    opacity: 0.8;
+}
+
+.lv-plans-cta {
+    margin-top: 1.25rem;
+}
+
+.lv-plans-cards {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.lv-plan-card {
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 1.375rem;
+    background: var(--surface);
+}
+
+.lv-plan-card.lv-plans-rec {
+    border-color: transparent;
+}
+
+.lv-plan-card-head {
+    display: flex;
+    flex-direction: column;
+}
+
+.lv-plan-card .lv-plan-badge-empty {
+    display: none;
+}
+
+.lv-plan-card ul {
+    display: grid;
+    gap: 0.625rem;
+    margin-top: 1.125rem;
+    list-style: none;
+}
+
+/* Linha de 21px (15 x 1.4), inteira: com 1.35 cada linha terminava em fração
+   de pixel, e o traço do "não inclui" saía ora nítido, ora borrado. */
+.lv-plan-card li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: var(--lv-fs-small);
+    line-height: 1.4;
+}
+
+.lv-plan-card-value {
+    flex: none;
+}
+
+.lv-plans-note {
+    margin-top: 1.25rem;
+    max-width: 48rem;
+    font-size: var(--lv-fs-caption);
+    line-height: 1.6;
+    color: var(--text-faint);
+}
+
+@media (min-width: 900px) {
+    .lv-plans-head {
+        grid-template-columns: 1fr auto;
+    }
+
+    .lv-toggle {
+        justify-self: end;
+    }
+
+    .lv-plans-table {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr 1fr 1fr;
+        gap: 0 0.75rem;
+        margin-top: 3rem;
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        padding: 1.75rem;
+        background:
+            radial-gradient(40rem 18rem at 70% 0%, rgb(230 196 106 / 0.06), transparent 70%),
+            var(--surface);
+    }
+
+    .lv-plans-cards {
+        display: none;
+    }
+}
+
+/* ── Para quem ──────────────────────────────────────────────────────────── */
+.lv-audience {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.lv-audience-list {
+    display: grid;
+    gap: 0.75rem;
+    list-style: none;
+}
+
+@media (min-width: 1024px) {
+    .lv-audience {
+        grid-template-columns: 1fr 1.25fr;
+        gap: 4rem;
+        align-items: start;
+    }
+}
+
+/* Linha de convidado, copiada do app: quem chegou tem o fundo dourado e o
+   check de latão preenchido. */
+.lv-guest {
+    display: flex;
+    min-height: 4rem;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgb(201 162 39 / 0.42);
+    border-radius: 14px;
+    padding: 0.85rem 1.15rem;
+    background: rgb(58 44 18 / 0.75);
+    font-size: var(--lv-fs-body);
+}
+
+/* A avaliação real, embaixo do texto da seção "para quem". */
+.lv-testimonial {
+    max-width: 26rem;
+    margin-top: 2.25rem;
+}
+
+.lv-testimonial blockquote {
+    font-size: var(--lv-fs-h4);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.lv-testimonial figcaption {
+    margin-top: 0.625rem;
+    font-size: var(--lv-fs-caption);
+    color: var(--text-faint);
+}
+
+.lv-check {
+    display: grid;
+    flex: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    place-items: center;
+    border-radius: 999px;
+    color: var(--gold-ink);
+    background: var(--brass);
+    box-shadow: 0 0 10px rgb(230 196 106 / 0.18);
+}
+
+/* ── Baixar ─────────────────────────────────────────────────────────────── */
+.lv-download {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+/* O palco mede a si mesmo (`cqi` = 1% da largura dele): símbolo e telefone
+   crescem juntos, na mesma proporção, em qualquer largura de tela. */
+.lv-download-stage {
+    position: relative;
+    height: 27rem;
+    container-type: inline-size;
+}
+
+/* O símbolo do app atrás do telefone, no lugar do anel. O telefone cobre o
+   miolo do símbolo, então a conta é esta: telefone com até 44% da largura do
+   símbolo, e o L aparece inteiro à esquerda e a perna direita do V à direita.
+   Menor que isso, o telefone engolia as letras e sobrava só o círculo, que é
+   o anel de antes. Sem recolorir: é a marca, como os selos das lojas. Vai a
+   60%, meia-luz: em latão cheio ele pesava mais que o título ao lado.
+   `max-width: none` desfaz o teto de 100% que o Tailwind põe em toda `img`. */
+.lv-download-mark {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(31rem, 106cqi);
+    max-width: none;
+    height: auto;
+    translate: -50% -50%;
+    opacity: 0.6;
+    filter: drop-shadow(0 0 22px rgb(230 196 106 / 0.16));
+    pointer-events: none;
+}
+
+.lv-download-phone {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(13.75rem, 46cqi);
+    translate: -50% -50%;
+    rotate: -4deg;
+    filter: drop-shadow(0 30px 40px rgb(8 5 2 / 0.7));
+}
+
+@media (min-width: 900px) {
+    .lv-download {
+        grid-template-columns: 1fr 1.1fr;
+        gap: 4rem;
+    }
+
+    .lv-download-stage {
+        height: 32rem;
+    }
+}
+
+/* ── Perguntas ──────────────────────────────────────────────────────────── */
+.lv-faq-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+    .lv-faq-grid {
+        grid-template-columns: 1fr 1.3fr;
+    }
+}
+
+/* Pergunta aberta = ativa, e ativo é o único estado em que o ouro acende. */
+.lv-faq {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding-inline: 1.5rem;
+    background: var(--bg-elevated);
+    transition:
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.lv-faq[open] {
+    border-color: rgb(201 162 39 / 0.6);
+    box-shadow: 0 0 0 4px rgb(201 162 39 / 0.05);
+}
+
+.lv-faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.lv-faq-q {
+    font-size: var(--lv-fs-body);
+    font-weight: 600;
+}
+
+/* O "+" é desenhado, e não o caractere: em fonte do sistema e peso 300 ele
+   era mais um texto solto com cara de símbolo, como o "★" da nota. */
+.lv-faq-icon {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--gold-light);
+    transition: rotate 0.25s ease;
+}
+
+.lv-faq[open] .lv-faq-icon {
+    rotate: 45deg;
+}
+
+.lv-faq summary:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+/* ── Política de privacidade ────────────────────────────────────────────── */
+/* A política usa o documento jurídico do portfólio, que traz a tipografia de
+   lá: rótulo em mono e títulos sem serifa. Aqui ele entra na escala da marca
+   sem mexer no componente, que o Product Radar também usa. */
+.lv-legal .label {
+    font-family: var(--lv-font-sans);
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    color: var(--text-faint);
+}
+
+.lv-legal h1,
+.lv-legal h2 {
+    font-family: var(--lv-font-serif);
+    font-weight: 600;
+    text-wrap: balance;
+}
+
+.lv-legal h1 {
+    font-size: var(--lv-fs-h2);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.lv-legal h2 {
+    font-size: var(--lv-fs-h4);
+    letter-spacing: -0.012em;
+}
+
+/* ── Rodapé ─────────────────────────────────────────────────────────────── */
+.lv-footer {
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+}
+
+.lv-footer .lv-seal {
+    width: 1.875rem;
+}
+
+.lv-footer-grid {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.lv-footer-tagline {
+    margin-top: 1rem;
+    max-width: 22rem;
+    font-size: var(--lv-fs-small);
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.lv-footer .lv-badges img {
+    height: 2.5rem;
+}
+
+.lv-footer-title {
+    font-size: var(--lv-fs-label);
+    font-weight: 600;
+    letter-spacing: var(--lv-track-label);
+    text-transform: uppercase;
+    color: var(--text-faint);
+}
+
+.lv-footer-links {
+    display: grid;
+    gap: 0.625rem;
+    margin-top: 1rem;
+    list-style: none;
+    font-size: var(--lv-fs-small);
+    color: var(--text-muted);
+}
+
+.lv-footer-links a,
+.lv-footer-bottom a {
+    transition: color 0.2s ease;
+}
+
+.lv-footer-links a:hover,
+.lv-footer-bottom a:hover {
+    color: var(--gold-light);
+}
+
+.lv-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    margin-top: 3.5rem;
+    font-size: var(--lv-fs-caption);
+    color: var(--text-faint);
+}
+
+@media (min-width: 900px) {
+    .lv-footer-grid {
+        grid-template-columns: 1.6fr 1fr 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lv-ring,
+    .lv-float,
+    .lv-rise {
+        animation: none;
+    }
+
+    /* O componente não avança com movimento reduzido; aqui só some o fade, e
+       a barrinha da tela atual aparece cheia em vez de encher. */
+    .lv-slide,
+    .lv-swap {
+        transition: none;
+    }
+
+    .lv-progress button[aria-pressed="true"] span {
+        animation: none;
+        scale: 1 1;
+    }
+
+    .lv-cta:hover,
+    .lv-cta-ring:hover {
+        translate: none;
+    }
+}

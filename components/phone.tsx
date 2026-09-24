@@ -18,7 +18,8 @@ import Image from "next/image";
  * isso o componente voltou a ser de servidor, sem `useState`, sem efeito e
  * sem JavaScript no cliente.
  */
-const TELA = { left: "5.357%", top: "2.573%", width: "89.187%", height: "94.854%" };
+/** Exportada para o hero do Lista Virtual, que empilha três telas dentro do mesmo molde. */
+export const TELA = { left: "5.357%", top: "2.573%", width: "89.187%", height: "94.854%" };
 
 export type Tela = { src: string; label: string };
 

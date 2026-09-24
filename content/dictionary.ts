@@ -262,6 +262,7 @@ const en: Dictionary = {
             ],
             stack: ["Expo", "React Native", "TypeScript", "Firebase", "Cloud Functions", "Firestore", "RevenueCat"],
             links: [
+                { label: "App page", href: "/en/lista-virtual" },
                 { label: "App Store", href: "https://apps.apple.com/ie/app/lista-virtual-guest-list/id6738919953" },
                 { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.ROC" },
             ],
@@ -522,6 +523,7 @@ const pt: Dictionary = {
             ],
             stack: ["Expo", "React Native", "TypeScript", "Firebase", "Cloud Functions", "Firestore", "RevenueCat"],
             links: [
+                { label: "Página do app", href: "/pt/lista-virtual" },
                 { label: "App Store", href: "https://apps.apple.com/ie/app/lista-virtual-guest-list/id6738919953" },
                 { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.ROC" },
             ],
