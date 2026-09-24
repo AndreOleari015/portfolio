@@ -30,12 +30,17 @@ export const SiteHeader = ({ dict, locale }: { dict: Dictionary; locale: Locale 
 
                     <span className="mx-1.5 hidden h-3.5 w-px bg-border md:block" />
 
-                    <Link
+                    {/* `<a>` e não `Link`: trocar de idioma troca o parâmetro do
+                        layout raiz, e na navegação do cliente o React refaz a
+                        `<html>` e o `<head>`. O script de boot do layout não roda
+                        de novo (o React avisa no console) e a classe `js` que ele
+                        pôs some. Carregando a página inteira, o boot roda. */}
+                    <a
                         href={`/${dict.localeSwitch.to}`}
                         hrefLang={dict.localeSwitch.to}
                         className="label px-2 py-2 transition-colors hover:text-text">
                         {dict.localeSwitch.label}
-                    </Link>
+                    </a>
 
                     <ThemeToggle label={dict.a11y.themeToggle} />
                 </nav>

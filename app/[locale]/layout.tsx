@@ -5,6 +5,7 @@ import { Geist_Mono, Hanken_Grotesk } from "next/font/google";
 import { notFound } from "next/navigation";
 import { Motion } from "@/components/motion";
 import { getDictionary, isLocale, locales, profile } from "@/content/dictionary";
+import { SITE_URL } from "@/content/site-url";
 import "../globals.css";
 
 /**
@@ -25,16 +26,6 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
  * poder esconder o conteúdo sem piscar) e aplica o tema salvo.
  */
 const BOOT_SCRIPT = `try{var d=document.documentElement;d.classList.add('js');var t=localStorage.getItem('theme');if(t==='dark'||t==='light')d.dataset.theme=t;}catch(e){}`;
-
-/**
- * Base absoluta para as URLs de metadata. Sem isso o Next emite caminho relativo
- * na imagem de Open Graph e LinkedIn/Slack não conseguem resolver o preview.
- * Na Vercel, VERCEL_URL já vem preenchida a cada deploy.
- */
-const vercelHost = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
-const SITE_URL =
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (vercelHost ? `https://${vercelHost}` : "http://localhost:3000");
 
 /**
  * Token de verificação de propriedade do Google Search Console. É público por
@@ -103,6 +94,10 @@ export default async function LocaleLayout({
         <html
             lang={locale}
             suppressHydrationWarning
+            // O CSS usa `scroll-behavior: smooth` nas âncoras. Com este atributo o
+            // Next 16 desliga a rolagem suave durante a troca de rota, que é o
+            // comportamento de antes da versão 16 (guia de atualização).
+            data-scroll-behavior="smooth"
             className={`${hanken.variable} ${geistMono.variable} h-full antialiased`}>
             <head>
                 <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
