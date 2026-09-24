@@ -5,6 +5,7 @@ import { LvShell } from "@/components/lista-virtual";
 import { isLocale, locales } from "@/content/dictionary";
 import { getListaVirtual } from "@/content/lista-virtual";
 import { wittgenstein } from "../brand-font";
+import { socialMetadata } from "../social";
 
 type Params = { params: Promise<{ locale: string }> };
 
@@ -13,9 +14,10 @@ export const generateMetadata = async ({ params }: Params): Promise<Metadata> =>
     if (!isLocale(locale)) return {};
 
     const content = getListaVirtual(locale);
+    const title = `${content.privacy.title} · ${content.name}`;
 
     return {
-        title: `${content.privacy.title} · ${content.name}`,
+        title,
         description: content.privacy.intro,
         alternates: {
             canonical: `/${locale}/lista-virtual/privacy`,
@@ -23,6 +25,7 @@ export const generateMetadata = async ({ params }: Params): Promise<Metadata> =>
                 locales.map((l) => [l, `/${l}/lista-virtual/privacy`]),
             ),
         },
+        ...socialMetadata(locale, { title, description: content.privacy.intro, path: "/privacy" }),
     };
 };
 

@@ -15,6 +15,7 @@ import { Phone } from "@/components/phone";
 import { isLocale, locales } from "@/content/dictionary";
 import { APP_STORE_URL, getListaVirtual, PLAY_STORE_URL } from "@/content/lista-virtual";
 import { wittgenstein } from "./brand-font";
+import { socialMetadata } from "./social";
 
 type Params = { params: Promise<{ locale: string }> };
 
@@ -51,13 +52,11 @@ export const generateMetadata = async ({ params }: Params): Promise<Metadata> =>
             canonical: `/${locale}/lista-virtual`,
             languages: Object.fromEntries(locales.map((l) => [l, `/${l}/lista-virtual`])),
         },
-        openGraph: {
-            type: "website",
-            url: `/${locale}/lista-virtual`,
+        ...socialMetadata(locale, {
             title: content.meta.title,
             description: content.meta.description,
-            locale: locale === "pt" ? "pt_BR" : "en_IE",
-        },
+            path: "",
+        }),
         itunes: { appId: "6738919953" },
     };
 };

@@ -27,6 +27,20 @@ e marcação de avaliação vinda da própria empresa é motivo de ação manual
 - `app/robots.ts` libera tudo e aponta o sitemap.
 - Depois do deploy: enviar `sitemap.xml` no Search Console (a propriedade já está verificada).
 
+## Imagem de compartilhamento
+
+- `public/og-lista-virtual-{pt,en}.*.jpg`, 1200x630: o título do hero com "sem papel" em latão, o
+  subtítulo, a nota da loja e o telefone com o símbolo atrás (QR do convidado no pt, lista com
+  check-ins no en). Vai no `og:image` e no cartão do X da landing e da política, por
+  `app/[locale]/lista-virtual/social.ts`.
+- Sem isso as páginas herdavam o Open Graph e o cartão do X do layout raiz: no X o link da landing
+  saía como o portfólio ("Andre Oleari · Engenheiro de Software Mobile") e no WhatsApp, sem imagem.
+- Gerar de novo: `node scripts/og-lista-virtual.mjs` (desenho em `scripts/og-lista-virtual.html`),
+  e colar os caminhos que ele imprime em `meta.ogImage`. JPEG abaixo de 300 KB, porque acima disso o
+  WhatsApp costuma não mostrar a prévia.
+- A imagem repete a nota e o total de avaliações: mudou o número em `content/lista-virtual.ts`, mudar
+  no desenho e gerar de novo.
+
 ## Ícone da aba
 
 - `public/logos/lista-virtual-icon.*.png` (256px, recorte justo do anel do ícone do app, para o LV se

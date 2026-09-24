@@ -57,7 +57,8 @@ A nota do hero soma as duas lojas no mundo todo, igual nas páginas em portuguê
 | Google Play | 35 | 4,75 | página pública do app (a loja exibe 4,8) |
 | **Total** | **203** | **4,464** | média ponderada pelo número de avaliações; a página mostra 4,5 |
 
-As estrelas preenchem na proporção da nota mostrada.
+As estrelas preenchem na proporção da nota mostrada. A nota e o total também estão na imagem de
+compartilhamento: mudou aqui, gerar de novo (ver [seo.md](seo.md#imagem-de-compartilhamento)).
 
 - **Avaliação citada**: 5 estrelas, "App excelente para Gestão de Presença!!!", Luiza Bittner,
   13/02/2025, App Store Brasil (feed `customerreviews` da loja). Fica na seção "para quem". No inglês

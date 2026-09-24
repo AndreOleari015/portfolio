@@ -99,7 +99,8 @@ export type Testimonial = { quote: string; author: string; source: string };
 export type Step = { title: string; body: string; tags: string[]; screen: Screen };
 
 export type ListaVirtualContent = {
-    meta: { title: string; description: string };
+    /** `ogImage`: a imagem dos links compartilhados, 1200x630, gerada com a identidade do app. */
+    meta: { title: string; description: string; ogImage: string; ogImageAlt: string };
     nav: { features: string; how: string; plans: string; faq: string; download: string };
     name: string;
     /** Pílula acima do título. Afirmação verificável, nunca ranking inventado. */
@@ -158,6 +159,9 @@ const pt: ListaVirtualContent = {
         title: "Lista Virtual: lista de convidados sem papel, convite pelo WhatsApp e check-in por QR Code",
         description:
             "App de lista de convidados para casamento, festa, formatura e evento corporativo. Convites pelo WhatsApp com confirmação de presença, check-in por QR Code na portaria e funcionamento sem internet.",
+        ogImage: "/og-lista-virtual-pt.ac6e3b68.jpg",
+        ogImageAlt:
+            "Lista Virtual: lista de convidados sem papel. O app aberto no QR de um convidado, com nota 4,5 nas lojas.",
     },
     nav: { features: "Recursos", how: "Como funciona", plans: "Planos", faq: "Perguntas", download: "Baixar grátis" },
     trust: { rating: "4,5", ratingLabel: "203 avaliações nas lojas" },
@@ -494,6 +498,9 @@ const en: ListaVirtualContent = {
         title: "Lista Virtual: paperless guest list, WhatsApp invitations and QR code check-in",
         description:
             "Guest list app for weddings, parties, graduations and corporate events. WhatsApp invitations with RSVP, QR code check-in at the door, and it keeps working with no internet.",
+        ogImage: "/og-lista-virtual-en.e3ff83fb.jpg",
+        ogImageAlt:
+            "Lista Virtual: the guest list, without paper. The app open on a guest list with check-ins, rated 4.5 in the stores.",
     },
     nav: { features: "Features", how: "How it works", plans: "Pricing", faq: "Questions", download: "Download free" },
     trust: { rating: "4.5", ratingLabel: "203 store ratings" },
