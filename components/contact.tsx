@@ -62,12 +62,14 @@ export const Contact = ({ dict }: { dict: Dictionary }) => (
                 {dict.contact.emailLabel}
             </a>
 
-            <a href={profile.cv} download className="group/cv">
-                <span className="link-underline font-mono text-xs text-muted group-hover/cv:text-accent">
-                    {dict.cv.label}
-                </span>
-                <span className="label mt-1 block">{dict.cv.note}</span>
-            </a>
+            {profile.cv ? (
+                <a href={profile.cv} download className="group/cv">
+                    <span className="link-underline font-mono text-xs text-muted group-hover/cv:text-accent">
+                        {dict.cv.label}
+                    </span>
+                    <span className="label mt-1 block">{dict.cv.note}</span>
+                </a>
+            ) : null}
         </div>
 
         <dl data-reveal className="mt-12 grid gap-x-10 gap-y-5 sm:grid-cols-3">

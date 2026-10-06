@@ -98,14 +98,16 @@ export const Opening = ({ dict }: { dict: Dictionary }) => {
                                 {dict.hero.location}
                             </p>
 
-                            <a
-                                style={rise(360)}
-                                href={profile.cv}
-                                download
-                                className="rise label inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-2 text-text transition-colors hover:border-accent hover:text-accent">
-                                {dict.cv.label}
-                                <span aria-hidden>↓</span>
-                            </a>
+                            {profile.cv ? (
+                                <a
+                                    style={rise(360)}
+                                    href={profile.cv}
+                                    download
+                                    className="rise label inline-flex items-center gap-2 rounded-full border border-border px-3.5 py-2 text-text transition-colors hover:border-accent hover:text-accent">
+                                    {dict.cv.label}
+                                    <span aria-hidden>↓</span>
+                                </a>
+                            ) : null}
                         </div>
                     </div>
                 </div>

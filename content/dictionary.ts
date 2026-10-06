@@ -15,16 +15,19 @@ export const profile = {
     githubHandle: "AndreOleari015",
     linkedin: "https://www.linkedin.com/in/andre-oleari-83406520b",
     linkedinHandle: "andre-oleari",
-    /** Um arquivo só, em inglês, porque o mercado é irlandês. O nome é
-     *  estável de propósito: é uma URL que as pessoas guardam e compartilham,
-     *  e um hash de conteúdo quebraria o link a cada versão do CV.
+    /** O CV está fora do ar desde 06/10, a pedido do André: a versão atual
+     *  não está boa para publicar. Com `null` os dois botões somem, e o PDF
+     *  saiu de `public/` para `assets/cv/`, que não vai para o git nem para
+     *  o deploy, então a URL antiga dá 404.
      *
-     *  A versão atual saiu do `job-tailor`, de
-     *  `output/f24-senior-mobile-developer/oleari-cv-f24.pdf`. Entre as 57
-     *  geradas, é a que traz o Lista Virtual, a camada nativa do Apple Watch,
-     *  a Pixel Logic Apps na experiência e o NARIC, sem nomear a empresa da
-     *  vaga em lugar nenhum do corpo. */
-    cv: "/andre-oleari-cv.pdf",
+     *  Para voltar: pôr o PDF novo em `public/andre-oleari-cv.pdf` e trocar
+     *  `null` por `"/andre-oleari-cv.pdf"`. Um arquivo só, em inglês, porque o
+     *  mercado é irlandês, e com nome estável de propósito: é uma URL que as
+     *  pessoas guardam, e um hash de conteúdo quebraria o link a cada versão.
+     *
+     *  A versão que saiu do ar veio do `job-tailor`, de
+     *  `output/f24-senior-mobile-developer/oleari-cv-f24.pdf`. */
+    cv: null,
 };
 
 export type Project = {
