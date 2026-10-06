@@ -283,12 +283,15 @@ body::after {
 
 /* A frase que se parte em volta da cabeça. Peso leve para contrastar com o
    cartaz, e corpo grande o bastante para ler como título. */
+/* `balance` porque a caixa tem 7em e quatro linhas: sem ele a última palavra
+   ficava sozinha ("tela.") na metade da direita. */
 @utility split-line {
     font-family: var(--font-text);
     font-weight: 300;
     font-size: clamp(1.375rem, 3.1vw, 2.5rem);
     line-height: 1.1;
     letter-spacing: -0.035em;
+    text-wrap: balance;
 }
 
 @utility problem {

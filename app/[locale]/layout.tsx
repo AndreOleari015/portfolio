@@ -9,13 +9,13 @@ import { SITE_URL } from "@/content/site-url";
 import "../globals.css";
 
 /**
- * Grotesca geométrica para texto e display, mono para dado. Hanken Grotesk tem
- * itálico próprio, usado na nota de rodapé da experiência.
+ * Grotesca geométrica para texto e display, mono para dado. Sem itálico: o
+ * único uso era a nota em itálico da experiência, que virou a lista dos cargos
+ * anteriores.
  */
 const hanken = Hanken_Grotesk({
     variable: "--font-hanken",
     subsets: ["latin"],
-    style: ["normal", "italic"],
     display: "swap",
 });
 

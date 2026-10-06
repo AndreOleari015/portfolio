@@ -8,6 +8,11 @@ import type { Dictionary } from "@/content/dictionary";
  * parava no meio da página e deixava 400px mortos à direita de cada cargo.
  * O nome da empresa saiu do azul: acento é para marca, § e link, e um nome em
  * azul que não é clicável é promessa quebrada três vezes na mesma página.
+ *
+ * Os cargos de antes do desenvolvimento em tempo integral vêm depois, numa
+ * linha cada, na mesma grade de margem. Estão no LinkedIn e explicam a linha
+ * do tempo; com destaques e corpo de cargo eles pesariam tanto quanto a
+ * Pixel Logic numa página que é de mobile.
  */
 export const Experience = ({ dict }: { dict: Dictionary }) => (
     <>
@@ -21,6 +26,10 @@ export const Experience = ({ dict }: { dict: Dictionary }) => (
                     <div className="measure-wide">
                         <p className="label text-accent">{job.company}</p>
                         <h3 className="subhead mt-2.5">{job.role}</h3>
+
+                        {job.summary ? (
+                            <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">{job.summary}</p>
+                        ) : null}
 
                         <ul className="mt-5 space-y-2">
                             {job.bullets.map((bullet) => (
@@ -51,8 +60,29 @@ export const Experience = ({ dict }: { dict: Dictionary }) => (
             ))}
         </ol>
 
-        <p data-reveal className="measure-wide mt-14 text-faint italic">
-            {dict.experience.earlierNote}
-        </p>
+        <div data-reveal className="mt-16 md:mt-20">
+            <p className="label">{dict.experience.earlier.label}</p>
+
+            <ol className="mt-7 space-y-7">
+                {dict.experience.earlier.jobs.map((job) => (
+                    <li key={`${job.company}-${job.period}`} className="doc">
+                        <div className="measure-wide">
+                            <p className="text-[0.9375rem] leading-snug">
+                                {job.company}
+                                <span className="text-faint"> · </span>
+                                {job.role}
+                            </p>
+                            <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted">{job.summary}</p>
+                        </div>
+
+                        <p className="margin-note lg:text-right">
+                            {job.period}
+                            <br />
+                            {job.location}
+                        </p>
+                    </li>
+                ))}
+            </ol>
+        </div>
     </>
 );
