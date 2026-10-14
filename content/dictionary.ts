@@ -205,6 +205,10 @@ const en: Dictionary = {
                     body: "While testing in Cork, 26% to 33% of departure requests came back as 503 and the app showed “Couldn't reach server”. It turned out to be CPU: a batch of twenty stops made the Worker parse 3.8 MB of JSON on a cold start, past its 10 ms limit. I split the batch into chunks of eight, each with its own budget, and the errors went to zero.",
                 },
                 {
+                    title: "Live times for 4.3% of departures",
+                    body: "At first only 4.3% of departures showed a live time, even though the official feed was working. The Irish feed only reports a delay at some stops of each trip, so I carry that delay forward along the rest of the trip on the server. Live coverage went to 67.9% of departures, with no extra cost per user.",
+                },
+                {
                     title: "Keeping the widget right while the app is closed",
                     body: "iOS decides when a widget refreshes, so polling isn't an option. A scheduled time never changes, only the delay does. The app gives the widget a timeline of 12 entries covering the next hour, each counting down from the absolute due time, and the minutes stay right with the app closed.",
                 },
@@ -319,10 +323,10 @@ const en: Dictionary = {
                 summary:
                     "I worked across more than 30 mobile products, often from an early idea all the way to release. Over time the job grew beyond writing code, into owning delivery, making technical decisions and keeping apps running well in production.",
                 bullets: [
-                    "Helped Bobbie Goods: Coloring Book keep evolving as it passed a million downloads on Google Play, across new features, monetisation, releases and the fixes a growing audience needed.",
-                    "Worked on Vale Gás / Auxílio Meu Social, which passed 500,000 downloads, turning complicated public-benefit information into something simple to use on a phone.",
+                    "Built the new version of Bobbie Goods: Coloring Book from the first commit to the App Store in 18 days, with six monetisation features tested through four A/B experiments.",
+                    "Took Vale Gás / Auxílio Meu Social from the first commit to Google Play in three days. It passed 500,000 downloads, turning complicated public-benefit information into something simple to use on a phone.",
                     "Every new app repeated the same setup and integrations, so they went into a shared Expo toolkit. I helped shape it and chased the bugs that only showed up once it ran across the whole catalogue, and new apps became faster and more consistent to start.",
-                    "Improved release workflows that relied on a lot of manual work. A release that could take most of a working day became much faster and more predictable.",
+                    "Automated store releases with Fastlane across 18 apps. Sending a build to the stores went from most of a working day to about a minute.",
                     "Led a small team of two developers, helping unblock decisions and keep delivery moving while staying hands-on with the apps.",
                 ],
                 apps: {
@@ -486,6 +490,10 @@ const pt: Dictionary = {
                     body: "Testando em Cork, de 26% a 33% das consultas de partidas voltavam com 503, e o app avisava que não conseguia falar com o servidor. O problema era CPU: um lote de vinte pontos fazia o Worker processar 3,8 MB de JSON num cold start, passando do limite de 10 ms. Dividi o lote em blocos de oito, cada um com seu próprio limite, e os erros foram a zero.",
                 },
                 {
+                    title: "Tempo real em só 4,3% das partidas",
+                    body: "No começo só 4,3% das partidas mostravam horário ao vivo, mesmo com o feed oficial funcionando. O feed irlandês só informa o atraso em algumas paradas de cada viagem, então o servidor leva esse atraso adiante pelo resto da viagem. A cobertura ao vivo foi para 67,9% das partidas, sem custo extra por usuário.",
+                },
+                {
                     title: "O widget certo com o app fechado",
                     body: "Quem decide quando um widget atualiza é o iOS, então ficar consultando não é opção. O horário programado nunca muda, só o atraso. O app entrega ao widget uma linha do tempo de 12 entradas cobrindo a próxima hora, cada uma contando a partir do horário absoluto, e os minutos continuam certos com o app fechado.",
                 },
@@ -600,10 +608,10 @@ const pt: Dictionary = {
                 summary:
                     "Trabalhei em mais de 30 produtos mobile, muitas vezes da ideia inicial até a publicação. Com o tempo o trabalho foi além de escrever código: passei a responder pela entrega, pelas decisões técnicas e por manter os apps funcionando bem em produção.",
                 bullets: [
-                    "Ajudei o Bobbie Goods: Coloring Book a continuar evoluindo enquanto passava de 1 milhão de downloads no Google Play, com funcionalidades novas, monetização, publicações e as correções que um público crescendo pedia.",
-                    "Trabalhei no Vale Gás / Auxílio Meu Social, que passou de 500 mil downloads, transformando informação complicada sobre benefícios sociais em algo simples de usar no celular.",
+                    "Construí a nova versão do Bobbie Goods: Coloring Book do primeiro commit até a App Store em 18 dias, com seis recursos de monetização testados em quatro experimentos A/B.",
+                    "Levei o Vale Gás / Auxílio Meu Social do primeiro commit ao Google Play em três dias. Ele passou de 500 mil downloads, transformando informação complicada sobre benefícios sociais em algo simples de usar no celular.",
                     "Todo app novo repetia a mesma configuração e as mesmas integrações, então isso foi para um toolkit Expo compartilhado. Ajudei a moldar a biblioteca e a caçar os bugs que só apareciam quando ela rodava no catálogo inteiro, e os apps novos passaram a começar mais rápido e mais padronizados.",
-                    "Melhorei fluxos de publicação que dependiam de muito trabalho manual. Uma publicação que podia tomar boa parte do dia ficou bem mais rápida e previsível.",
+                    "Automatizei a publicação nas lojas com Fastlane em 18 apps. Mandar uma versão para as lojas deixou de tomar boa parte do dia e passou a levar cerca de um minuto.",
                     "Liderei um time pequeno de dois desenvolvedores, ajudando a destravar decisões e a manter a entrega andando, sem largar o código.",
                 ],
                 apps: {
