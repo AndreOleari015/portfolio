@@ -89,7 +89,8 @@ export type Job = {
 export type EarlierJob = { role: string; company: string; period: string; location: string; summary: string };
 
 export type Dictionary = {
-    meta: { title: string; description: string };
+    /** `ogImage`: a imagem dos links compartilhados, gerada por `scripts/og-perfil.mjs`. */
+    meta: { title: string; description: string; ogImage: string };
     nav: { work: string; experience: string; about: string; contact: string };
     a11y: { themeToggle: string };
     /** O CV em PDF. `note` avisa o idioma, que importa na página em português. */
@@ -145,6 +146,7 @@ const en: Dictionary = {
         title: "Andre Oleari · Mobile Software Engineer",
         description:
             "Mobile software engineer in Cork, Ireland, working mostly with React Native and Expo. I have three apps of my own on the App Store and Google Play, and worked on more than 30 at Pixel Logic Apps.",
+        ogImage: "/og-perfil-en.63414cff.jpg",
     },
     nav: { work: "Projects", experience: "Experience", about: "About", contact: "Contact" },
     a11y: { themeToggle: "Switch between light and dark" },
@@ -430,6 +432,7 @@ const pt: Dictionary = {
         title: "Andre Oleari · Engenheiro de Software Mobile",
         description:
             "Engenheiro de software mobile em Cork, na Irlanda, trabalhando principalmente com React Native e Expo. Tenho três apps meus na App Store e no Google Play, e trabalhei em mais de 30 na Pixel Logic Apps.",
+        ogImage: "/og-perfil-pt.8c5a5121.jpg",
     },
     nav: { work: "Projetos", experience: "Experiência", about: "Sobre", contact: "Contato" },
     a11y: { themeToggle: "Alternar entre claro e escuro" },

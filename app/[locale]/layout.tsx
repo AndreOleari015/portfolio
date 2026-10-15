@@ -46,7 +46,7 @@ export const generateMetadata = async ({
     const dict = getDictionary(locale);
 
     const ogImage = {
-        url: `/og-${locale}.png`,
+        url: dict.meta.ogImage,
         width: 1200,
         height: 630,
         alt: `${profile.name}. ${dict.hero.role}, ${dict.hero.location}`,
