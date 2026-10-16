@@ -318,6 +318,14 @@ const en: Dictionary = {
         kicker: "My first jobs were in an accounting office and in IT support in Pará, Brazil. Development became my full-time job at the end of 2024.",
         jobs: [
             {
+                role: "Independent Mobile Developer",
+                company: "Oleari Technologies",
+                period: "Jun 2026 to present",
+                location: "Remote",
+                summary: "I build and run my own mobile apps, and take on freelance React Native work.",
+                bullets: [],
+            },
+            {
                 role: "Software Engineer, React Native and Expo",
                 company: "Pixel Logic Apps",
                 period: `Nov 2024 to ${PIXEL_LOGIC_END.en}`,
@@ -603,6 +611,14 @@ const pt: Dictionary = {
         heading: "Experiência",
         kicker: "Meus primeiros empregos foram num escritório de contabilidade e em suporte de TI, no Pará. O desenvolvimento virou meu trabalho em tempo integral no fim de 2024.",
         jobs: [
+            {
+                role: "Desenvolvedor Mobile Independente",
+                company: "Oleari Technologies",
+                period: "Jun 2026 até hoje",
+                location: "Remoto",
+                summary: "Desenvolvo e mantenho meus próprios apps e faço trabalhos de freelance em React Native.",
+                bullets: [],
+            },
             {
                 role: "Engenheiro de Software, React Native e Expo",
                 company: "Pixel Logic Apps",

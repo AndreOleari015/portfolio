@@ -31,15 +31,17 @@ export const Experience = ({ dict }: { dict: Dictionary }) => (
                             <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted">{job.summary}</p>
                         ) : null}
 
-                        <ul className="mt-5 space-y-2">
-                            {job.bullets.map((bullet) => (
-                                <li
-                                    key={bullet}
-                                    className="relative pl-5 text-[0.9375rem] leading-relaxed text-muted before:absolute before:top-[0.7em] before:left-0 before:size-1 before:rounded-full before:bg-border-strong">
-                                    {bullet}
-                                </li>
-                            ))}
-                        </ul>
+                        {job.bullets.length ? (
+                            <ul className="mt-5 space-y-2">
+                                {job.bullets.map((bullet) => (
+                                    <li
+                                        key={bullet}
+                                        className="relative pl-5 text-[0.9375rem] leading-relaxed text-muted before:absolute before:top-[0.7em] before:left-0 before:size-1 before:rounded-full before:bg-border-strong">
+                                        {bullet}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : null}
 
                         {job.apps ? (
                             <p className="mt-5 flex flex-wrap items-baseline gap-x-3 gap-y-1">
