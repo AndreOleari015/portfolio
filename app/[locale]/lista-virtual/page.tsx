@@ -36,6 +36,9 @@ const CLOSING_SCREEN = {
     },
 };
 
+/** Nome da campanha nos links das lojas (`storeUrls`). */
+const CAMPAIGN = "site-landing";
+
 /** O símbolo do app (o LV no círculo), no tamanho cheio: vai grande atrás do telefone. */
 const SYMBOL = "/logos/lista-virtual-simbolo.1f90848d.webp";
 
@@ -113,7 +116,7 @@ export default async function ListaVirtualPage({ params }: Params) {
     ];
 
     return (
-        <LvShell locale={locale} content={content} wrapperClass={`brand-lista ${wittgenstein.variable}`}>
+        <LvShell locale={locale} content={content} campaign={CAMPAIGN} wrapperClass={`brand-lista ${wittgenstein.variable}`}>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -157,7 +160,7 @@ export default async function ListaVirtualPage({ params }: Params) {
                         <p className="lv-lead lv-hero-sub mt-6">{content.subhead}</p>
 
                         <div className="mt-9">
-                            <StoreBadges locale={locale} content={content} />
+                            <StoreBadges locale={locale} content={content} campaign={CAMPAIGN} />
                         </div>
                         <p className="lv-fine mt-4">{content.freeNote}</p>
                     </div>
@@ -266,7 +269,7 @@ export default async function ListaVirtualPage({ params }: Params) {
                         <h2 className="lv-serif lv-section-title">{content.closingHeading}</h2>
                         <p className="lv-lead mt-5 max-w-[28rem]">{content.closingBody}</p>
                         <div className="mt-9">
-                            <StoreBadges locale={locale} content={content} />
+                            <StoreBadges locale={locale} content={content} campaign={CAMPAIGN} />
                         </div>
                         <p className="lv-fine mt-4">{content.freeNote}</p>
                     </div>

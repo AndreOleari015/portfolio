@@ -61,3 +61,25 @@ e marcação de avaliação vinda da própria empresa é motivo de ação manual
   (`components/lista-virtual-hero.tsx`). No Next 16 o `priority` ficou obsoleto, e a documentação
   prefere esses dois ao `preload`.
 - Telas de 900px no máximo, WebP.
+
+## Modelos de lista de convidados (30/10/2026)
+
+- Dez páginas por tipo de evento, só em pt, escolhidas pela busca do Google no Brasil (vault:
+  `apps/lista-virtual/2026-10-30-paginas-seo-buscas.md`). Título "Lista de convidados para <evento>:
+  modelo grátis em Excel e PDF", `canonical` própria, sem `alternates.languages`.
+- `BreadcrumbList` em JSON-LD (Lista Virtual > Modelos > evento).
+- No `app/sitemap.ts`, em `PT_ONLY`. A landing em pt linka a página de modelos em dois lugares: no passo 1 do "Como funciona" ("Ainda não tem planilha? Baixe um modelo grátis", campo `link` do `Step`) e no rodapé.
+- Teste: 10 páginas primeiro. Em 4 a 8 semanas, ver impressões e cliques no Search Console antes de
+  fazer mais.
+- A planilha tem as colunas do importador do app, na mesma ordem, e o VIP sempre na sexta coluna
+  (ver o comentário no topo de `content/lista-de-convidados.ts`).
+
+## Campanhas nos links das lojas (30/10/2026)
+
+- `storeUrls(campaign)` em `content/lista-virtual.ts` monta os links com campanha: Apple com `pt=127458243`
+  (número de provedor, do gerador de link do App Store Connect) e `ct=<campanha>`; Google Play com
+  `referrer` em UTM (`utm_source=andreoleari.com.br`, `utm_medium=site`, `utm_campaign=<campanha>`).
+- Campanhas: `site-landing` (landing) e `site-modelos` (páginas de modelo e a lista delas). A política de
+  privacidade fica com o link limpo. O JSON-LD também.
+- Onde ler: App Store Connect › App Analytics › Aquisição › Campanhas (aparece a partir de 5 instalações
+  na campanha) e Play Console › Aquisição de usuários, por campanha UTM.

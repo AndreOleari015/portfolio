@@ -24,6 +24,27 @@ import type { LegalDoc } from "@/content/product-radar";
 
 export const APP_STORE_URL = "https://apps.apple.com/app/id6738919953";
 export const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.ROC";
+
+/** Número de provedor da conta na Apple, tirado do gerador de link de campanha do App Store Connect (30/10/2026). */
+const APPLE_PROVIDER_TOKEN = "127458243";
+
+/**
+ * Links das lojas com o nome da campanha, para saber quantas instalações cada
+ * página trouxe: na Apple, `pt` + `ct` (App Analytics › Campanhas, que só
+ * mostra a campanha depois de 5 instalações); no Google Play, o `referrer` com
+ * UTM (Play Console › Aquisição). Sem campanha, o link é o de sempre. O dado
+ * estruturado continua com o link limpo.
+ */
+export const storeUrls = (campaign?: string) => {
+    if (!campaign) return { appStore: APP_STORE_URL, googlePlay: PLAY_STORE_URL };
+    const referrer = encodeURIComponent(
+        `utm_source=andreoleari.com.br&utm_medium=site&utm_campaign=${campaign}`,
+    );
+    return {
+        appStore: `https://apps.apple.com/app/apple-store/id6738919953?pt=${APPLE_PROVIDER_TOKEN}&ct=${campaign}&mt=8`,
+        googlePlay: `${PLAY_STORE_URL}&referrer=${referrer}`,
+    };
+};
 export const SUPPORT_EMAIL = "usaqcontato@gmail.com";
 
 export type LvIcon = "qr" | "chat" | "offline" | "team" | "sheet" | "report";
@@ -96,7 +117,8 @@ export type Proof = { value: string; label: string };
 export type Testimonial = { quote: string; author: string; source: string };
 
 /** Um passo do "como funciona": a tela real do app e o que ela resolve. */
-export type Step = { title: string; body: string; tags: string[]; screen: Screen };
+/** `link` leva para fora do passo: no pt, o passo de montar a lista aponta os modelos de planilha. */
+export type Step = { title: string; body: string; tags: string[]; screen: Screen; link?: { href: string; label: string } };
 
 export type ListaVirtualContent = {
     /** `ogImage`: a imagem dos links compartilhados, 1200x630, gerada com a identidade do app. */
@@ -196,7 +218,7 @@ const pt: ListaVirtualContent = {
                 id: "event",
                 name: "1 Evento",
                 kind: "Pagamento único",
-                price: "R$ 4,90",
+                price: "R$ 9,90",
                 period: "2 dias de Premium",
                 note: "Não renova",
                 cta: "Baixar o app",
@@ -246,7 +268,7 @@ const pt: ListaVirtualContent = {
         ],
         yes: "Incluído",
         no: "Não incluído",
-        note: "As compras são feitas dentro do app, pela App Store ou pelo Google Play. Preços da App Store Brasil em 24/09/2026; no Google Play e em outros países o valor pode variar. Os passes são pagamento único e não renovam; as assinaturas renovam até você cancelar na loja.",
+        note: "As compras são feitas dentro do app, pela App Store ou pelo Google Play. Preços da App Store Brasil em 30/10/2026; no Google Play e em outros países o valor pode variar. Os passes são pagamento único e não renovam; as assinaturas renovam até você cancelar na loja.",
     },
     footer: {
         tagline: "Lista de convidados, convites pelo WhatsApp e check-in por QR Code.",
@@ -307,6 +329,10 @@ const pt: ListaVirtualContent = {
             title: "Monte a lista",
             body: "Digite os convidados ou importe a planilha do Excel que você já tem, com os acompanhantes. No Premium, separe por mesa, empresa ou setor.",
             tags: ["Até 50 convidados no grátis", "Importar planilha · Premium"],
+            link: {
+                href: "/pt/lista-virtual/lista-de-convidados",
+                label: "Ainda não tem planilha? Baixe um modelo grátis",
+            },
             screen: {
                 src: "/telas/lista-virtual-pt-import.5acc4b6b.webp",
                 alt: "Lista da Gala Corporativa Aurora 2026 separada por empresa, com o menu de importar planilha e gerar relatório aberto",
@@ -378,7 +404,7 @@ const pt: ListaVirtualContent = {
         },
         {
             question: "Quanto custa?",
-            answer: "É grátis para 1 evento com até 50 convidados. Para mais, o Premium libera tudo por evento (R$ 4,90 por 2 dias ou R$ 14,90 por 7 dias, pagamento único) ou por assinatura (R$ 14,90 por semana ou R$ 129,90 por ano).",
+            answer: "É grátis para 1 evento com até 50 convidados. Para mais, o Premium libera tudo por evento (R$ 9,90 por 2 dias ou R$ 14,90 por 7 dias, pagamento único) ou por assinatura (R$ 14,90 por semana ou R$ 129,90 por ano).",
         },
         {
             question: "O que o plano grátis inclui?",
@@ -585,7 +611,7 @@ const en: ListaVirtualContent = {
         ],
         yes: "Included",
         no: "Not included",
-        note: "Purchases happen inside the app, through the App Store or Google Play. US App Store prices on 24 September 2026; they vary by country and on Google Play. Passes are one-time and don't renew; subscriptions renew until you cancel in the store.",
+        note: "Purchases happen inside the app, through the App Store or Google Play. US App Store prices on 30 October 2026; they vary by country and on Google Play. Passes are one-time and don't renew; subscriptions renew until you cancel in the store.",
     },
     footer: {
         tagline: "Guest list, WhatsApp invitations and QR code check-in.",

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState } from "react";
 import { Phone } from "@/components/phone";
 import type { Step } from "@/content/lista-virtual";
@@ -70,6 +71,11 @@ export const LvSteps = ({ steps }: { steps: Step[] }) => {
                             </p>
                             <h3 className="lv-serif lv-step-title">{step.title}</h3>
                             <p className="lv-step-body">{step.body}</p>
+                            {step.link && (
+                                <Link href={step.link.href} className="lv-step-link">
+                                    {step.link.label}
+                                </Link>
+                            )}
                             <ul className="lv-tags">
                                 {step.tags.map((tag) => (
                                     <li key={tag}>{tag}</li>

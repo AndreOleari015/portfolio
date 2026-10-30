@@ -181,3 +181,30 @@ Regra: quando algo parecer forte demais, **diminuir, nunca remover**.
 - **R4** (24/09): sem barra, sem fio, monograma, números limpos, vãos iguais, e o brilho zerado. "Não
   era para remover, só diminuir." Com a meia-luz de volta: "ainda não está bom".
 - **R5** (24/09): método deste guia, layout da OKX, da Ment Funding e da VoltPeak, preços reais.
+
+## Modelos de lista (30/10/2026)
+
+`/pt/lista-virtual/lista-de-convidados` e uma página por evento em `/[evento]`, só em português.
+Conteúdo em `content/lista-de-convidados.ts`; arquivos para baixar em `public/modelos/`, gerados por
+`node scripts/modelos-lista.mjs`.
+
+- **Os dois arquivos são os únicos objetos claros da página** (refeito em 30/10/2026 a pedido do
+  André, que não gostou da folha creme com a tabela simples). A prévia mostra os arquivos como abrem:
+  a planilha na frente, com o nome do arquivo, as letras das colunas (as puladas são colunas
+  escondidas, como no Excel), o número das linhas, as cores do arquivo e as abas embaixo; o PDF
+  deitado atrás, inclinado -6deg. As cores da planilha (cabeçalho escuro, amarelo com texto azul,
+  verde e vermelho no Sim/Não) são do arquivo e valem aqui como o verde do WhatsApp nas capturas.
+- **Planilha no padrão do André** (a planilha da viagem aprovada em 18/10/2026): Arial, cabeçalho
+  `#2A1E05` com texto branco em negrito, célula de preencher `#FFF7D6` com texto azul, fórmula em
+  cinza `#F2F2F2`, zero como "-", fio `#C9D3D6`, cabeçalho congelado. O título, a linha cinza e o
+  resumo com fórmulas ficam à direita da lista, porque o app lê a linha 1 como cabeçalho.
+- **PDF em A4 deitado**, 20 linhas por página, 3 páginas: nome, acompanhantes, colunas do evento,
+  observações e o quadrado de "chegou".
+- Dois botões: a planilha em latão sólido (o principal) e o PDF em anel.
+- Colunas em dois grupos com rótulo dourado: as seis que o app lê e as do evento.
+- Dicas uma por linha, título à esquerda e texto à direita. Lado a lado viravam três cartões iguais.
+- A mensagem de confirmação vai num balão de conversa, com "Copiar mensagem" em anel (único JS da
+  página).
+- O seletor de idioma leva para `/en/lista-virtual` (`otherHref` no `LvShell`): não há versão em
+  inglês dos modelos.
+- A prévia usa nomes de exemplo e avisa embaixo que a planilha vem em branco.

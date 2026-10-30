@@ -2,13 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/content/dictionary";
 import { profile } from "@/content/dictionary";
-import {
-    APP_STORE_URL,
-    type ListaVirtualContent,
-    type LvIcon,
-    PLAY_STORE_URL,
-    SUPPORT_EMAIL,
-} from "@/content/lista-virtual";
+import { MODELS_COPY } from "@/content/lista-de-convidados";
+import { type ListaVirtualContent, type LvIcon, storeUrls, SUPPORT_EMAIL } from "@/content/lista-virtual";
 
 /**
  * Peças das páginas do Lista Virtual. Elas não usam a moldura do portfólio
@@ -45,15 +40,24 @@ const BADGES: Record<Locale, { appStore: { src: string; width: number }; googleP
     },
 };
 
-export const StoreBadges = ({ locale, content }: { locale: Locale; content: ListaVirtualContent }) => {
+export const StoreBadges = ({
+    locale,
+    content,
+    campaign,
+}: {
+    locale: Locale;
+    content: ListaVirtualContent;
+    campaign?: string;
+}) => {
     const badges = BADGES[locale];
+    const urls = storeUrls(campaign);
 
     return (
         <div className="lv-badges">
-            <a href={APP_STORE_URL}>
+            <a href={urls.appStore}>
                 <Image src={badges.appStore.src} alt={content.appStoreLabel} width={badges.appStore.width} height={48} />
             </a>
-            <a href={PLAY_STORE_URL}>
+            <a href={urls.googlePlay}>
                 <Image src={badges.googlePlay.src} alt={content.playStoreLabel} width={badges.googlePlay.width} height={48} />
             </a>
         </div>
@@ -144,7 +148,9 @@ export const FeatureIcon = ({ icon }: { icon: LvIcon }) => (
  * classe da marca e a variável da fonte: aplicadas aqui, no topo, elas vestem
  * inclusive o cabeçalho e o rodapé. `path` é o que vem depois de
  * `/lista-virtual`, para o seletor de idioma levar à mesma página na outra
- * língua.
+ * língua. `campaign` vai para os selos das lojas do rodapé (ver `storeUrls`).
+ * `otherHref` substitui esse destino quando a página só existe numa
+ * língua (os modelos de lista são só em português).
  *
  * Nenhum dos dois é faixa. O cabeçalho era uma barra fixa, com fundo próprio e
  * fio embaixo, e cortava a luz da vitrine numa emenda reta; o rodapé repetia o
@@ -156,12 +162,16 @@ export const LvShell = ({
     locale,
     content,
     path = "",
+    otherHref,
+    campaign,
     wrapperClass,
     children,
 }: {
     locale: Locale;
     content: ListaVirtualContent;
     path?: string;
+    otherHref?: string;
+    campaign?: string;
     wrapperClass: string;
     children: React.ReactNode;
 }) => {
@@ -201,7 +211,7 @@ export const LvShell = ({
                             {/* `<a>` e não `Link`: trocar de idioma troca o
                                 layout raiz, e sem recarregar o script de boot não
                                 roda de novo (ver `site-header.tsx`). */}
-                            <a href={`/${other}/lista-virtual${path}`} hrefLang={other}>
+                            <a href={otherHref ?? `/${other}/lista-virtual${path}`} hrefLang={other}>
                                 {other.toUpperCase()}
                             </a>
                         </p>
@@ -224,7 +234,7 @@ export const LvShell = ({
                             </Link>
                             <p className="lv-footer-tagline">{content.footer.tagline}</p>
                             <div className="mt-6">
-                                <StoreBadges locale={locale} content={content} />
+                                <StoreBadges locale={locale} content={content} campaign={campaign} />
                             </div>
                         </div>
 
@@ -236,6 +246,11 @@ export const LvShell = ({
                                         <a href={anchor.href}>{anchor.label}</a>
                                     </li>
                                 ))}
+                                {locale === "pt" && (
+                                    <li>
+                                        <Link href={`${home}/lista-de-convidados`}>{MODELS_COPY.hubLink}</Link>
+                                    </li>
+                                )}
                             </ul>
                         </div>
 

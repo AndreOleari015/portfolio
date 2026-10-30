@@ -12,7 +12,7 @@ preço no código: ele mostra o `priceString` que a loja devolve.
 | Plano | ID na loja | Tipo | Página promete | App Store BR | App Store US |
 |---|---|---|---|---|---|
 | Grátis | · | · | 1 evento, até 50 convidados | R$ 0 | $0 |
-| 1 Evento | `one_shot_event` | pagamento único | 2 dias de Premium | R$ 4,90 | $0.99 |
+| 1 Evento | `one_shot_event` | pagamento único | 2 dias de Premium | R$ 9,90 (desde 03/10/2026; conferido na App Store em 30/10/2026) | $0.99 |
 | Semana da Festa | `event_week` | pagamento único | 7 dias de Premium | R$ 14,90 | $2.99 |
 | Semanal | `org.name.roc.weekly` | assinatura | renova por semana | R$ 14,90 | $2.99 |
 | Anual | `subscription_annual` | assinatura | renova por ano | R$ 129,90 | $19.99 |
