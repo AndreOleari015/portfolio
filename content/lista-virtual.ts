@@ -227,10 +227,9 @@ const pt: ListaVirtualContent = {
                 id: "week",
                 name: "Semana da Festa",
                 kind: "Pagamento único",
-                price: "R$ 14,90",
+                price: "R$ 19,90",
                 period: "7 dias de Premium",
                 note: "Não renova",
-                badge: "Recomendado",
                 cta: "Baixar o app",
             },
         ],
@@ -268,7 +267,7 @@ const pt: ListaVirtualContent = {
         ],
         yes: "Incluído",
         no: "Não incluído",
-        note: "As compras são feitas dentro do app, pela App Store ou pelo Google Play. Preços da App Store Brasil em 30/10/2026; no Google Play e em outros países o valor pode variar. Os passes são pagamento único e não renovam; as assinaturas renovam até você cancelar na loja.",
+        note: "As compras são feitas dentro do app, pela App Store ou pelo Google Play. Preços da App Store Brasil em 31/10/2026; no Google Play e em outros países o valor pode variar. Os passes são pagamento único e não renovam; as assinaturas renovam até você cancelar na loja.",
     },
     footer: {
         tagline: "Lista de convidados, convites pelo WhatsApp e check-in por QR Code.",
@@ -404,7 +403,7 @@ const pt: ListaVirtualContent = {
         },
         {
             question: "Quanto custa?",
-            answer: "É grátis para 1 evento com até 50 convidados. Para mais, o Premium libera tudo por evento (R$ 9,90 por 2 dias ou R$ 14,90 por 7 dias, pagamento único) ou por assinatura (R$ 14,90 por semana ou R$ 129,90 por ano).",
+            answer: "É grátis para 1 evento com até 50 convidados. Para mais, o Premium libera tudo por evento (R$ 9,90 por 2 dias ou R$ 19,90 por 7 dias, pagamento único) ou por assinatura (R$ 14,90 por semana ou R$ 129,90 por ano).",
         },
         {
             question: "O que o plano grátis inclui?",
@@ -416,7 +415,7 @@ const pt: ListaVirtualContent = {
         },
         {
             question: "Como cancelo a assinatura?",
-            answer: "Nos ajustes de assinatura da App Store ou do Google Play, quando quiser. O Premium continua até o fim do período já pago.",
+            answer: "Nos ajustes de assinatura da App Store ou do Google Play, quando quiser. No Android, entre na Play Store com a mesma conta Google usada na compra. O Premium continua até o fim do período já pago.",
         },
         {
             question: "Posso importar minha lista do Excel?",
