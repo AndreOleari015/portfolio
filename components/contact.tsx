@@ -5,7 +5,7 @@ import { profile } from "@/content/dictionary";
 /** Segundo momento da figura: ele olhando para quem lê, ao fim da página. */
 const FIGURE = "/portrait/figure-desk.4d259b65.webp";
 
-const channels = [
+const baseChannels = [
     { label: "Email", value: profile.email, href: `mailto:${profile.email}`, external: false },
     { label: "GitHub", value: profile.githubHandle, href: profile.github, external: true },
     { label: "LinkedIn", value: profile.linkedinHandle, href: profile.linkedin, external: true },
@@ -46,48 +46,59 @@ export const ContactFigure = ({ alt }: { alt: string }) => (
  * vão de 120px no meio do texto. Um buraco entre dois parágrafos é pior do que
  * um bloco curto ao lado de uma figura alta.
  */
-export const Contact = ({ dict }: { dict: Dictionary }) => (
-    <div className="max-w-[34rem] lg:max-w-[32rem]">
-        <p data-reveal className="lead text-muted">
-            {dict.contact.body}
-        </p>
+export const Contact = ({ dict }: { dict: Dictionary }) => {
+    const { toptal } = dict.contact;
+    const channels = toptal
+        ? [...baseChannels, { label: "Toptal", value: toptal.value, href: toptal.href, external: true }]
+        : baseChannels;
 
-        {/* O e-mail é a ação principal e o CV é a secundária, então um é
-            botão cheio e o outro é link. Quem chega ao fim da página e não
-            quer escrever ainda leva o PDF. */}
-        <div data-reveal className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <a
-                href={`mailto:${profile.email}`}
-                className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
-                {dict.contact.emailLabel}
-            </a>
+    return (
+        <div className="max-w-[34rem] lg:max-w-[32rem]">
+            <p data-reveal className="lead text-muted">
+                {dict.contact.body}
+            </p>
 
-            {profile.cv ? (
-                <a href={profile.cv} download className="group/cv">
-                    <span className="link-underline font-mono text-xs text-muted group-hover/cv:text-accent">
-                        {dict.cv.label}
-                    </span>
-                    <span className="label mt-1 block">{dict.cv.note}</span>
+            {/* O e-mail é a ação principal e o CV é a secundária, então um é
+                botão cheio e o outro é link. Quem chega ao fim da página e não
+                quer escrever ainda leva o PDF. */}
+            <div data-reveal className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
+                <a
+                    href={`mailto:${profile.email}`}
+                    className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
+                    {dict.contact.emailLabel}
                 </a>
-            ) : null}
-        </div>
 
-        <dl data-reveal className="mt-12 grid gap-x-10 gap-y-5 sm:grid-cols-3">
-            {channels.map((channel) => (
-                <div key={channel.label}>
-                    <dt className="label">{channel.label}</dt>
-                    <dd className="mt-1.5">
-                        <a
-                            href={channel.href}
-                            {...(channel.external
-                                ? { target: "_blank", rel: "noreferrer noopener" }
-                                : {})}
-                            className="link-underline font-mono text-xs text-muted hover:text-accent">
-                            {channel.value}
-                        </a>
-                    </dd>
-                </div>
-            ))}
-        </dl>
-    </div>
-);
+                {profile.cv ? (
+                    <a href={profile.cv} download className="group/cv">
+                        <span className="link-underline font-mono text-xs text-muted group-hover/cv:text-accent">
+                            {dict.cv.label}
+                        </span>
+                        <span className="label mt-1 block">{dict.cv.note}</span>
+                    </a>
+                ) : null}
+            </div>
+
+            {/* Quatro canais (inglês, com a Toptal) ficam em 2 colunas; três, em 3. Quatro em 3 colunas
+                deixariam um sozinho na segunda linha. */}
+            <dl
+                data-reveal
+                className={`mt-12 grid gap-x-10 gap-y-5 ${channels.length === 4 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
+                {channels.map((channel) => (
+                    <div key={channel.label}>
+                        <dt className="label">{channel.label}</dt>
+                        <dd className="mt-1.5">
+                            <a
+                                href={channel.href}
+                                {...(channel.external
+                                    ? { target: "_blank", rel: "noreferrer noopener" }
+                                    : {})}
+                                className="link-underline font-mono text-xs text-muted hover:text-accent">
+                                {channel.value}
+                            </a>
+                        </dd>
+                    </div>
+                ))}
+            </dl>
+        </div>
+    );
+};

@@ -116,7 +116,10 @@ export type Dictionary = {
     };
     about: { heading: string; kicker: string; body: string[]; educationHeading: string; education: { course: string; school: string; period: string }[] };
     skills: { heading: string; groups: { label: string; items: string[] }[] };
-    contact: { heading: string; kicker: string; body: string; emailLabel: string };
+    /** `toptal` só no inglês (decidido pelo André em 17/11/2026): o link leva quem é de fora ao perfil
+     *  na Toptal, e o código depois do `#` é a indicação dele. Fica fora do português para que cliente
+     *  brasileiro fale direto com ele e não vire cliente da Toptal (regra de 12 meses do Talent Agreement). */
+    contact: { heading: string; kicker: string; body: string; emailLabel: string; toptal: { value: string; href: string } | null };
     footer: { built: string; rights: string };
     localeSwitch: { label: string; to: string };
 };
@@ -424,6 +427,7 @@ const en: Dictionary = {
         kicker: "I'm looking for mobile engineer, React Native or software engineer roles, in Ireland or remote.",
         body: "Email is the quickest way to reach me, but LinkedIn works too.",
         emailLabel: "Email me",
+        toptal: { value: "andre-oleari", href: "https://www.toptal.com/developers/resume/andre-oleari#BLDvJz" },
     },
     footer: {
         built: "Built with Next.js and Tailwind.",
@@ -718,6 +722,7 @@ const pt: Dictionary = {
         kicker: "Estou buscando vagas de Mobile Engineer, React Native Developer ou Software Engineer, na Irlanda ou remotas.",
         body: "O jeito mais rápido de falar comigo é por email, mas pelo LinkedIn também funciona.",
         emailLabel: "Mandar um email",
+        toptal: null,
     },
     footer: {
         built: "Feito com Next.js e Tailwind.",
