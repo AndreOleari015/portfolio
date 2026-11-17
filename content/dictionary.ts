@@ -148,7 +148,7 @@ const en: Dictionary = {
     meta: {
         title: "Andre Oleari · Mobile Software Engineer",
         description:
-            "Mobile software engineer in Cork, Ireland, working mostly with React Native and Expo. I have three apps of my own on the App Store and Google Play, and worked on more than 30 at Pixel Logic Apps.",
+            "Mobile software engineer in Paragominas, Brazil, working mostly with React Native and Expo. I have three apps of my own on the App Store and Google Play, and worked on more than 30 at Pixel Logic Apps.",
         ogImage: "/og-perfil-en.63414cff.jpg",
     },
     nav: { work: "Projects", experience: "Experience", about: "About", contact: "Contact" },
@@ -156,7 +156,7 @@ const en: Dictionary = {
     cv: { label: "Download CV", note: "PDF, one page" },
     hero: {
         role: "Mobile Software Engineer",
-        location: "Cork, Ireland",
+        location: "Paragominas, Brazil",
         available: "Open to work",
         headline: {
             left: "I build mobile apps,",
@@ -398,7 +398,7 @@ const en: Dictionary = {
         kicker: "How I got here",
         body: [
             "I started programming in 2019 at IFPA, in Brazil, when a professor introduced me to React Native through a course that still taught class components. I struggled quite a bit at first, so most of what I learned came from building things on my own: searching, testing and fixing problems as they came up.",
-            "Over time those projects stopped being exercises and became real apps, and the work grew with them: Firebase, APIs, payments, App Store and Google Play releases, CI/CD, OTA updates. Today I live in Cork, and what keeps me going is still what got me started: understanding how things work, and building them.",
+            "Over time those projects stopped being exercises and became real apps, and the work grew with them: Firebase, APIs, payments, App Store and Google Play releases, CI/CD, OTA updates. After a few months in Cork, Ireland, I moved back to Paragominas, in Brazil, and what keeps me going is still what got me started: understanding how things work, and building them.",
         ],
         educationHeading: "Education",
         education: [
@@ -424,7 +424,7 @@ const en: Dictionary = {
     },
     contact: {
         heading: "Get in touch",
-        kicker: "I'm looking for mobile engineer, React Native or software engineer roles, in Ireland or remote.",
+        kicker: "I'm looking for remote mobile engineer, React Native or software engineer roles. I work from Brazil (UTC−3).",
         body: "Email is the quickest way to reach me, but LinkedIn works too.",
         emailLabel: "Email me",
         toptal: { value: "andre-oleari", href: "https://www.toptal.com/developers/resume/andre-oleari#BLDvJz" },
@@ -443,7 +443,7 @@ const pt: Dictionary = {
     meta: {
         title: "Andre Oleari · Engenheiro de Software Mobile",
         description:
-            "Engenheiro de software mobile em Cork, na Irlanda, trabalhando principalmente com React Native e Expo. Tenho três apps meus na App Store e no Google Play, e trabalhei em mais de 30 na Pixel Logic Apps.",
+            "Engenheiro de software mobile em Paragominas, no Pará, trabalhando principalmente com React Native e Expo. Tenho três apps meus na App Store e no Google Play, e trabalhei em mais de 30 na Pixel Logic Apps.",
         ogImage: "/og-perfil-pt.8c5a5121.jpg",
     },
     nav: { work: "Projetos", experience: "Experiência", about: "Sobre", contact: "Contato" },
@@ -451,7 +451,7 @@ const pt: Dictionary = {
     cv: { label: "Baixar o CV", note: "PDF, uma página, em inglês" },
     hero: {
         role: "Engenheiro de Software Mobile",
-        location: "Cork, Irlanda",
+        location: "Paragominas, Pará",
         available: "Aberto a propostas",
         headline: {
             left: "Construo apps mobile,",
@@ -693,7 +693,7 @@ const pt: Dictionary = {
         kicker: "Como cheguei aqui",
         body: [
             "Comecei a programar em 2019 no IFPA, quando um professor me apresentou o React Native num curso que ainda ensinava class components. No começo apanhei bastante, então a maior parte do que aprendi veio de construir coisas sozinho: pesquisando, testando e resolvendo os problemas conforme apareciam.",
-            "Com o tempo esses projetos deixaram de ser exercício e viraram apps de verdade, e o trabalho cresceu junto: Firebase, APIs, pagamentos, publicação na App Store e no Google Play, CI/CD, atualizações OTA. Hoje moro em Cork, e o que me move ainda é o mesmo do começo: entender como as coisas funcionam, e construir.",
+            "Com o tempo esses projetos deixaram de ser exercício e viraram apps de verdade, e o trabalho cresceu junto: Firebase, APIs, pagamentos, publicação na App Store e no Google Play, CI/CD, atualizações OTA. Depois de alguns meses em Cork, na Irlanda, voltei para Paragominas, e o que me move ainda é o mesmo do começo: entender como as coisas funcionam, e construir.",
         ],
         educationHeading: "Formação",
         education: [
@@ -719,7 +719,7 @@ const pt: Dictionary = {
     },
     contact: {
         heading: "Falar comigo",
-        kicker: "Estou buscando vagas de Mobile Engineer, React Native Developer ou Software Engineer, na Irlanda ou remotas.",
+        kicker: "Estou buscando vagas remotas de Mobile Engineer, React Native Developer ou Software Engineer. Trabalho do Brasil (UTC−3).",
         body: "O jeito mais rápido de falar comigo é por email, mas pelo LinkedIn também funciona.",
         emailLabel: "Mandar um email",
         toptal: null,
